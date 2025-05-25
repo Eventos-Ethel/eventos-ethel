@@ -1,0 +1,178 @@
+<resources>
+
+    <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
+
+    <string name="app_name">RegistroEventosEthel</string>
+
+    <string name="txvBienvenido">¡BIENVENIDO!</string>
+    <string name="btnRegistrar">Registrar</string>
+    <string name="btnInicioSesion">Iniciar Sesión</string>
+
+    <string name="txvTituloReg">REGISTRAR USUARIO</string>
+    <string name="txtNomComp">Nombre completo</string>
+    <string name="txtUserName">Nombre de usuario</string>
+    <string name="txtContraseña">Contraseña</string>
+    <string name="txtConfirmarContra">Confirmar contraseña</string>
+    <string name="btnAceptarReg">Aceptar</string>
+    <string name="btnRegresarReg">Regresar</string>
+
+    <string name="txvInicioSesion">INICIAR SESIÓN</string>
+    <string name="txtUserNameIS">Nombre de usuario</string>
+    <string name="txtContraseñaIS">Contraseña</string>
+    <string name="btnAceptarIS">Aceptar</string>
+    <string name="btnRegresarIS">Regresar</string>
+
+    <string name="txvPantPrin">EVENTOS</string>
+    <string name="txvRegEventosPP">Registro de eventos</string>
+    <string name="txvListaEventPP">Lista de eventos</string>
+    <string name="txvRegProvPP">Registro de proveedores</string>
+    <string name="txvListaProvPP">Lista de proveedores</string>
+    <string name="txvCalendarioPP">Calendario</string>
+
+    <string name="txvRegEvento">REGISTRO DE EVENTOS</string>
+    <string name="txvNombreRE">Nombre del cliente</string>
+    <string name="txvDniRE">DNI</string>
+    <string name="txvCelularRE">N° Celular</string>
+    <string name="txvDescripcionRE">Descripción del evento</string>
+    <string name="txvFechaRE">Fecha del evento</string>
+    <string name="txvHoraRE">Hora del evento</string>
+    <string name="txvUbiRE">Ubicación del evento</string>
+    <string name="txvTipoRE">Tipo del evento</string>
+    <string name="txvInvitadosRE">Número de invitados</string>
+    <string name="txtNombreRE">Nombre</string>
+    <string name="txnDniRE">0</string>
+    <string name="txnCelular">0</string>
+    <string name="txtDescripcionRE">Descripción</string>
+    <string name="txtFechaRE">DD/MM/AAAA</string>
+    <string name="txtHoraRE">00:00 a.m.</string>
+    <string name="txtUbiRE">Ubicación</string>
+    <string name="txtTipoRE">Matrimonio, cumpleaños</string>
+    <string name="txnInvitadosRE">0</string>
+    <string name="btnSiguienteRE">Siguiente</string>
+    <string name="btnRegresarRE">Regresar</string>
+
+    <string name="txvServEvento">SERVICIO PARA EL EVENTO</string>
+    <string name="txvCostoAproxSE">Costo aproximado</string>
+    <string name="txvCostoSE"></string>
+    <string name="txvCostoEventoSE">Costo del evento</string>
+    <string name="txndCostoEventoSE">00.00</string>
+    <string name="btnRegresarSE">Regresar</string>
+    <string name="btnRegistrarSE">Registrar</string>
+
+    <string name="txvListaEventos">LISTA DE EVENTOS</string>
+    <string name="btnRegresarLE">Regresar</string>
+
+    <string name="txvEditEvento">EDITAR EVENTO</string>
+    <string name="txvNombreEE">Nombre del cliente</string>
+    <string name="txvDniEE">DNI</string>
+    <string name="txvTelefEE">Teléfono/celular</string>
+    <string name="txvDescripcionEE">Descripción del evento</string>
+    <string name="txvFechaEE">Fecha del evento</string>
+    <string name="txvHoraEE">Hora del evento</string>
+    <string name="txvUbiEE">Ubicación del evento</string>
+    <string name="txvTipoEE">Tipo del evento</string>
+    <string name="txvInvitadosEE">Número de invitados</string>
+    <string name="txtNombreEE">Nombre</string>
+    <string name="txtDescripcionEE">Descripción</string>
+    <string name="txtFechaEE">DD/MM/AAAA</string>
+    <string name="txtHoraEE">00:00 a.m.</string>
+    <string name="txtUbiEE">Ubicación</string>
+    <string name="txtTipoEE">Matrimonio, cumpleaños</string>
+    <string name="btnSiguienteEE">Siguiente</string>
+    <string name="btnRegresararEE">Regresar</string>
+
+    <string name="txvEditServEvent">EDITAR SERVICIO DEL EVENTO</string>
+    <string name="txvCostoAproxESE">Costo aproximado</string>
+    <string name="txvCostoESE">0</string>
+    <string name="btnEliminarESE">Eliminar</string>
+    <string name="btnGuardarESE">Guardar</string>
+
+    <string name="txvRegProv2">REGISTRO DE PROVEEDORES</string>
+    <string name="txvCodigoRP2">Código</string>
+    <string name="txvTipoProvRP2">Tipo de proveedor</string>
+    <string name="txvNombreRP2">Nombre</string>
+    <string name="txvDireccionRP2">Dirección</string>
+    <string name="txvDistritoRP2">Distrito</string>
+    <string name="txvProvinciaRP2">Provincia</string>
+    <string name="txvServOfreceRP2">Servicio que ofrece</string>
+    <string name="txvTelefonoRP2">Teléfono/celular</string>
+    <string name="txvCorreoRP2">Correo electrónico</string>
+    <string name="txnCodigoRP2">0</string>
+    <string name="txtNombreRP2">Nombre</string>
+    <string name="txtDireccionRP2">Dirección</string>
+    <string name="txtServOfreceRP2">Servicio</string>
+    <string name="txnTelefonoRP2">0</string>
+    <string name="txtCorreoRP2">abc@ejemplo.com</string>
+    <string name="btnSiguienteRP2">Siguiente</string>
+    <string name="btnRegresarRP2">Regresar</string>
+
+    <string name="txvServProv">SERVICIO DE PROVEEDOR</string>
+    <string name="txvCodigoSP">Código</string>
+    <string name="txvNombreSP">Nombre</string>
+    <string name="txvTipoSP">Tipo</string>
+    <string name="txvCostoSP">Costo</string>
+    <string name="txnCodigoSP">0</string>
+    <string name="txtNombreSP">Nombre</string>
+    <string name="txtTipoSP">Sonido, catering</string>
+    <string name="txnCostoSP">00.00</string>
+    <string name="btnRegresarSP">Regresar</string>
+    <string name="btnRegistrarSP">Registrar</string>
+
+    <string name="txvListSR">LISTA DE SERVICIOS REGISTRADOS</string>
+    <string name="btnRegresarLSP">Regresar</string>
+
+    <string name="txvEditarESR">EDITAR SERVICIOS REGISTRADOS</string>
+    <string name="txvCodigoESR">Código</string>
+    <string name="txvNombreESR">Nombre</string>
+    <string name="txvTipoESR">Tipo</string>
+    <string name="txvCostoESR">Costo</string>
+    <string name="txnCodigoESR">0</string>
+    <string name="txtNombreESR">Nombre</string>
+    <string name="txtTipoESR">Sonido, catering</string>
+    <string name="txnCostoESR">00.00</string>
+    <string name="btnEliminarESR">Eliminar</string>
+    <string name="btnGuardarESR">Guardar</string>
+
+    <string name="txvEditProv">EDITAR PROVEEDORES</string>
+    <string name="txvCodigoEP">Código</string>
+    <string name="txvTipoEP">Tipo de proveedor</string>
+    <string name="txvNombreEP">Nombre</string>
+    <string name="txvDirecciónEP">Dirección</string>
+    <string name="txvProvinciaEP">Provincia</string>
+    <string name="txvDistritoEP">Distrito</string>
+    <string name="txvTelefonoEP">Teléfono/celular</string>
+    <string name="txvCorreoEP">Correo electrónico</string>
+    <string name="btnSiguienteEP">Siguiente</string>
+    <string name="btnEliminarEP">Eliminar</string>
+    <string name="txnCodigoEP">0</string>
+    <string name="txtNombreEP">Nombre</string>
+    <string name="txtDireccionEP">Dirección</string>
+    <string name="txnTelefonoEP">0</string>
+    <string name="txtCorreoEP">abc@ejemplo.com</string>
+
+    <string name="txvListaProv">LISTA DE PROVEEDORES</string>
+    <string name="btnRegresarLP">Regresar</string>
+
+    <string name="txvCalendario">CALENDARIO</string>
+    <string name="txvFiltrarEventos">FILTRAR EVENTOS:</string>
+    <string name="txtFechaCalend">DD/MM/AAAA</string>
+    <string name="txtUbiCalend">Ubicación</string>
+    <string name="txtTipoCalend">Tipo de Evento</string>
+    <string name="btnFiltrarFecha">Filtrar</string>
+    <string name="btnFiltrarUbi">Filtrar</string>
+    <string name="btnFiltrarTE">Filtrar</string>
+    <string name="btnRegresarCalend">Regresar</string>
+
+    <string name="txvCalendarioFiltrado">CALENDARIO</string>
+    <string name="txvSeleccionEF1">Seleccione para ver detalladamente</string>
+    <string name="btnRegresarEF1">Regresar</string>
+
+    <string name="txvCalendarioFiltrado2">CALENDARIO</string>
+    <string name="txvSeleccionEF2">Seleccione para ver detalladamente</string>
+    <string name="btnRegresarEF2">Regresar</string>
+
+    <string name="txvCalendarioFiltrado3">CALENDARIO</string>
+    <string name="txvSeleccionEF3">Seleccione para ver detalladamente</string>
+    <string name="btnRegresarEF3">Regresar</string>
+
+</resources>
