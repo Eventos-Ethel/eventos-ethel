@@ -1,0 +1,51 @@
+<resources>
+
+    <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
+
+    <string name="app_name">RegistroEventosEthel</string>
+
+    <string name="txvBienvenido">¡BIENVENIDO!</string>
+    <string name="btnRegistrar">Registrar</string>
+    <string name="btnInicioSesion">Iniciar Sesión</string>
+
+    <string name="txvTituloReg">REGISTRAR USUARIO</string>
+    <string name="txtNomComp">Nombre completo</string>
+    <string name="txtUserName">Nombre de usuario</string>
+    <string name="txtContraseña">Contraseña</string>
+    <string name="txtConfirmarContra">Confirmar contraseña</string>
+    <string name="btnAceptarReg">Aceptar</string>
+    <string name="btnRegresarReg">Regresar</string>
+
+    <string name="txvInicioSesion">INICIAR SESIÓN</string>
+    <string name="txtUserNameIS">Nombre de usuario</string>
+    <string name="txtContraseñaIS">Contraseña</string>
+    <string name="btnAceptarIS">Aceptar</string>
+    <string name="btnRegresarIS">Regresar</string>
+
+    <!-- Pantalla Principal -->
+    <string name="txvPantPrin">EVENTOS</string>
+    <string name="txvRegEventosPP">Registro de eventos</string>
+    <string name="txvListaEventPP">Lista de eventos</string>
+    <string name="txvRegProvPP">Registro de proveedores</string>
+    <string name="txvListaProvPP">Lista de proveedores</string>
+    <string name="txvCalendarioPP">Calendario</string>
+
+    <!-- Registro de Proveedores -->
+    <string name="txvRegProv2">REGISTRO DE PROVEEDORES</string>
+    <string name="txvCodigoRP2">Código</string>
+    <string name="txvTipoProvRP2">Tipo de proveedor</string>
+    <string name="txvNombreRP2">Nombre</string>
+    <string name="txvDireccionRP2">Dirección</string>
+    <string name="txvDistritoRP2">Distrito</string>
+    <string name="txvProvinciaRP2">Provincia</string>
+    <string name="txvTelefonoRP2">Teléfono/celular</string>
+    <string name="txvCorreoRP2">Correo electrónico</string>
+    <string name="txnCodigoRP2">0</string>
+    <string name="txtNombreRP2">Nombre</string>
+    <string name="txtDireccionRP2">Dirección</string>
+    <string name="txnTelefonoRP2">0</string>
+    <string name="txtCorreoRP2">abc@ejemplo.com</string>
+    <string name="btnSiguienteRP2">Siguiente</string>
+    <string name="btnRegresarRP2">Regresar</string>
+
+</resources>

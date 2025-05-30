@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta peruana elegante -->
+    <color name="peruvian_wine">#9E1F28</color>  <!-- Rojo vino peruano -->
+    <color name="off_white">#F8F4F0</color>     <!-- Blanco roto elegante -->
+    <color name="white">#FFFFFF</color>
+    <color name="dark_gray">#333333</color>
+
+    <!-- Colores para botones -->
+    <color name="btnAceptarIS">#9E1F28</color>
+    <color name="btnRegresarIS">#F8F4F0</color>
+
+    <!-- Para efectos de selección -->
+    <color name="ripple_color">#209E1F28</color>
+
+    <!-- Colores para botones -->
+    <color name="btnRegistrarRP2">#9E1F28</color>
+    <color name="btnRegresarRP2">#F8F4F0</color>
+</resources>
