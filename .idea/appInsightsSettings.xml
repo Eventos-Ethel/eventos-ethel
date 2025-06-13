@@ -8,17 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-<<<<<<< HEAD
                   <option name="appId" value="com.jhonboop.eventosethel" />
                   <option name="mobileSdkAppId" value="1:259747645040:android:fb47cdf40c8df5631296b5" />
                   <option name="projectId" value="eventos-ethel-4db24" />
                   <option name="projectNumber" value="259747645040" />
-=======
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
->>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
