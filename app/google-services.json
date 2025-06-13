@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259747645040",
+    "project_id": "eventos-ethel-4db24",
+    "storage_bucket": "eventos-ethel-4db24.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259747645040:android:fb47cdf40c8df5631296b5",
+        "android_client_info": {
+          "package_name": "com.jhonboop.eventosethel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2tDh8rX2SMpA_TLrHf9vG6M5x7cNqS-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

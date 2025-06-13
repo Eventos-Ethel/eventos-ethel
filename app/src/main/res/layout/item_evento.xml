@@ -1,0 +1,118 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/gradient_background"
+    android:layout_marginBottom="16dp"
+    android:layout_marginHorizontal="12dp"
+    android:elevation="4dp"
+    android:backgroundTintMode="src_atop">
+
+    <!-- Cliente - Fecha y Hora -->
+    <TextView
+        android:id="@+id/tvNombreEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cliente - Fecha y Hora"
+        android:textStyle="bold"
+        android:textColor="@color/peruvian_wine"
+        android:textSize="18sp"
+        android:fontFamily="@font/playfair_display_bold" />
+
+    <!-- Fecha -->
+    <TextView
+        android:id="@+id/textFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:textColor="@color/dark_gray"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Hora -->
+    <TextView
+        android:id="@+id/textHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora"
+        android:textColor="@color/dark_gray"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp" />
+
+    <!-- Ubicación -->
+    <TextView
+        android:id="@+id/textUbicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ubicación"
+        android:textColor="@color/dark_gray"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp" />
+
+    <!-- Tipo de evento -->
+    <TextView
+        android:id="@+id/textTipoEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo"
+        android:textColor="@color/dark_gray"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp" />
+
+    <!-- Precio | Celular | Invitados -->
+    <TextView
+        android:id="@+id/tvDetalleEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio | Celular | Invitados"
+        android:textColor="@color/dark_gray"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp" />
+
+    <!-- Nombre del Cliente -->
+    <TextView
+        android:id="@+id/textNombreCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Cliente"
+        android:textStyle="bold"
+        android:textColor="@color/peruvian_wine"
+        android:textSize="16sp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="4dp"
+        android:fontFamily="@font/playfair_display_bold" />
+
+    <!-- Botones -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnEditarEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:backgroundTint="@color/btnRegistrarRP2"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:fontFamily="@font/playfair_display_bold" />
+
+        <Space
+            android:layout_width="12dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnEliminarEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            android:backgroundTint="@color/btnRegresarRP2"
+            android:textColor="@color/peruvian_wine"
+            android:textSize="14sp"
+            android:fontFamily="@font/playfair_display_bold" />
+    </LinearLayout>
+</LinearLayout>
