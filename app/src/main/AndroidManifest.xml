@@ -33,6 +33,7 @@
                 <activity android:name=".RegistrarUsuario" android:exported="false" />
                 <activity android:name=".PantallaPrincipal" android:exported="false" />
                 <activity android:name=".IniciarSesion" android:exported="false" />
+                <activity android:name=".TipoUsuario" />
                 <activity
                     android:name=".MainActivity"
                     android:exported="true">

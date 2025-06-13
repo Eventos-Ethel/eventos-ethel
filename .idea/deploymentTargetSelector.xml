@@ -4,20 +4,6 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-<<<<<<< HEAD
-        <DropdownSelection timestamp="2025-06-02T04:12:40.947066900Z">
-          <Target type="DEFAULT_BOOT">
-            <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Jhon Santiago\.android\avd\Medium_Phone.avd" />
-            </handle>
-          </Target>
-        </DropdownSelection>
-        <DialogSelection />
-      </SelectionState>
-      <SelectionState runConfigName="RegistroProveedor2">
-        <option name="selectionMode" value="DROPDOWN" />
-=======
->>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
       </SelectionState>
     </selectionStates>
   </component>
