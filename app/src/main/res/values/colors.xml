@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
-    <!-- Paleta peruana elegante -->
-    <color name="peruvian_wine">#9E1F28</color>
-    <color name="off_white">#F8F4F0</color>
-=======
-<<<<<<< HEAD
+
     <!-- Paleta peruana elegante -->
     <color name="peruvian_wine">#9E1F28</color>  <!-- Rojo vino peruano -->
     <color name="off_white">#F8F4F0</color>     <!-- Blanco roto elegante -->
@@ -23,32 +18,18 @@
     <!-- Colores para botones -->
     <color name="btnRegistrarRP2">#9E1F28</color>
     <color name="btnRegresarRP2">#F8F4F0</color>
-<<<<<<< HEAD
 
     <color name="black">#000000</color>
 
     <color name="warm_gray">#757575</color>
 
     <!-- prueba -->
-=======
-=======
-
-    <color name="peruvian_wine">#9E1F28</color>  <!-- Rojo vino peruano sofisticado -->
-    <color name="off_white">#F8F4F0</color>     <!-- Blanco roto elegante -->
-    <color name="warm_gray">#8C8C8C</color>     <!-- Gris cálido -->
-    <color name="white">#FFFFFF</color>
-    <color name="dark_gray">#333333</color>
-
-    <color name="black">#FF000000</color>
 
     <color name="btnInicioSesion">#3070BD</color>
     <color name="btnRegistrar">#3070BD</color>
 
     <color name="btnAceptarReg">#3070BD</color>
     <color name="btnRegresarReg">#BF124F</color>
-
-    <color name="btnAceptarIS">#3070BD</color>
-    <color name="btnRegresarIS">#BF124F</color>
 
     <color name="btnRegistrarRE">#3070BD</color>
     <color name="btnRegresarRE">#BF124F</color>
@@ -61,9 +42,6 @@
 
     <color name="btnPersonaRP1">#8758D3</color>
     <color name="btnEmpresaRP1">#8758D3</color>
-
-    <color name="btnRegistrarRP2">#3070BD</color>
-    <color name="btnRegresarRP2">#BF124F</color>
 
     <color name="btnRegresarLP">#BF124F</color>
 

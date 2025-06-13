@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
-<<<<<<< HEAD
+
         <item>@font/playfair_display</item>
         <item>@font/playfair_display_bold</item>
         <item>@font/playfair_display_regular</item>
         <item>@font/poppins_medium</item>
-=======
+
         <item>@font/archivo_black</item>
         <item>@font/poppins_light</item>
         <item>@font/poppins_thin</item>
->>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     </array>
 </resources>

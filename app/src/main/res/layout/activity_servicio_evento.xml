@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
+
     android:background="@drawable/gradient_background"
     tools:context=".ServicioEvento">
 
@@ -119,8 +119,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.838" />
 
-=======
-    tools:context=".ServicioEvento">
 
->>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
 </androidx.constraintlayout.widget.ConstraintLayout>
