@@ -39,7 +39,8 @@ jobs:
     - name: Upload to Firebase App Distribution
       uses: wzieba/Firebase-Distribution-Github-Action@v1
       with:
-         appId: ${{ secrets.FIREBASE_APP_ID }}
-         token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-         groups: testers
-         file: app/build/outputs/apk/debug/app-debug.apk
+        appId: ${{ secrets.FIREBASE_APP_ID }}
+        serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        file: app/build/outputs/apk/debug/app-debug.apk
+        groups: testers
+        releaseNotes: "Subida automática desde GitHub Actions 🚀"
