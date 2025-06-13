@@ -2,88 +2,107 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/whatsapp_image_2024_06_11_at_4_42_07_pm__1_"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
 
+    <!-- Logo con margen superior -->
     <ImageView
         android:id="@+id/imvLogo"
-        android:layout_width="412dp"
-        android:layout_height="99dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo_eventos_ethel" />
+        app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/btnRegistrar"
-        android:text="@string/btnRegistrar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.814" />
-
-    <Button
-        android:id="@+id/btnInicioSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/btnInicioSesion"
-        android:text="@string/btnInicioSesion"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imvLogo"
-        app:layout_constraintVertical_bias="0.519" />
-
+    <!-- Texto de bienvenida elegante -->
     <TextView
         android:id="@+id/txvBienvenido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/archivo_black"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/playfair_display"
+        android:letterSpacing="0.03"
         android:text="@string/txvBienvenido"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/peruvian_wine"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintTop_toBottomOf="@+id/imvLogo" />
 
-    <ImageView
-        android:id="@+id/imvRegistrar"
-        android:layout_width="108dp"
-        android:layout_height="105dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- Contenedor de botones elegante -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="40dp"
+        app:cardBackgroundColor="@color/off_white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709"
-        app:srcCompat="@drawable/agregar" />
+        app:layout_constraintTop_toBottomOf="@+id/txvBienvenido">
 
-    <ImageView
-        android:id="@+id/imvIS"
-        android:layout_width="109dp"
-        android:layout_height="105dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.383"
-        app:srcCompat="@drawable/inicio_de_sesion" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Botón de Inicio de Sesión - Estilo outline elegante -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInicioSesion"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginBottom="16dp"
+                android:drawableStart="@drawable/inicio_de_sesion"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/peruvian_wine"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/btnInicioSesion"
+                android:textAllCaps="false"
+                android:textColor="@color/peruvian_wine"
+                android:textSize="17sp"
+                app:cornerRadius="14dp"
+                app:iconGravity="textStart"
+                app:strokeColor="@color/peruvian_wine"
+                app:strokeWidth="1.5dp" />
+
+            <!-- Divisor elegante -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="o"
+                android:textColor="@color/warm_gray"
+                android:textSize="15sp" />
+
+            <!-- Botón de Registro - Color elegante -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegistrar"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:drawableStart="@drawable/agregar"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/off_white"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/btnRegistrar"
+                android:textAllCaps="false"
+                android:textColor="@color/off_white"
+                android:textSize="17sp"
+                app:backgroundTint="@color/peruvian_wine"
+                app:cornerRadius="14dp"
+                app:iconGravity="textStart" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

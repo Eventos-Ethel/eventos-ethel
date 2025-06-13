@@ -2,6 +2,7 @@ package com.example.registroeventosethel
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -39,5 +40,14 @@ class PantallaPrincipal : AppCompatActivity() {
             val siguiente = Intent(this, Calendario::class.java)
             startActivity(siguiente)
         }
+
+        val btnCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
+        btnCerrarSesion.setOnClickListener {
+            val i = Intent(this, IniciarSesion::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
+        }
+
+
     }
 }

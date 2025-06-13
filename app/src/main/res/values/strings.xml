@@ -75,6 +75,9 @@
     <string name="txtHoraEE">00:00 a.m.</string>
     <string name="txtUbiEE">Ubicación</string>
     <string name="txtTipoEE">Matrimonio, cumpleaños</string>
+    <string name="txnDniEE">0</string>
+    <string name="txnInvitadosEE">0</string>
+    <string name="txnTelefonoEE">0</string>
     <string name="btnSiguienteEE">Siguiente</string>
     <string name="btnRegresararEE">Regresar</string>
 

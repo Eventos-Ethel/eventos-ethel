@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/whatsapp_image_2024_06_11_at_4_42_07_pm__1_"
+    android:background="@drawable/gradient_background"
     tools:context=".ServicioEvento">
 
     <ImageView
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo_eventos_ethel" />
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/txvServEvento"
@@ -38,8 +38,10 @@
         android:id="@+id/listView"
         android:layout_width="322dp"
         android:layout_height="319dp"
-        tools:layout_editor_absoluteX="44dp"
-        tools:layout_editor_absoluteY="189dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txvCostoAproxSE"
@@ -68,7 +70,7 @@
         android:id="@+id/btnRegistrarSE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/btnRegistrarSE"
+        android:backgroundTint="@color/peruvian_wine"
         android:text="@string/btnRegistrarSE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +83,7 @@
         android:id="@+id/btnRegresarSE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/btnRegresarSE"
+        android:backgroundTint="@color/dark_gray"
         android:text="@string/btnRegresarSE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

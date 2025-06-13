@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/whatsapp_image_2024_06_11_at_4_42_07_pm__1_"
+    android:background="@drawable/gradient_background"
     tools:context=".CalendarioFiltrado3">
 
     <ImageView
@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo_eventos_ethel" />
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/txvCalendarioFiltrado3"
@@ -60,7 +60,7 @@
         android:id="@+id/btnRegresarEF3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/btnRegresarEF3"
+        android:backgroundTint="@color/peruvian_wine"
         android:text="@string/btnRegresarEF3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
