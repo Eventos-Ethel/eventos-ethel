@@ -80,7 +80,7 @@ if [ "$cygwin" = "false" -a "$darwin" = "false" -a "$nonstop" = "false" ] ; then
   fi
 fi
 
-exec "$JAVACMD" $DEFAULT_JVM_OPTS \
+exec "$JAVACMD" $DEFAULT_JVM_OPTS="" \
   "-Dorg.gradle.appname=$APP_BASE_NAME" \
   -classpath "$CLASSPATH" \
   org.gradle.wrapper.GradleWrapperMain "$@"
