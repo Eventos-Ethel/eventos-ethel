@@ -1,4 +1,10 @@
 <resources>
+<<<<<<< HEAD
+=======
+
+    <string name="olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
+
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="app_name">RegistroEventosEthel</string>
 
     <string name="txvBienvenido">¡BIENVENIDO!</string>
@@ -19,6 +25,13 @@
     <string name="btnAceptarIS">Aceptar</string>
     <string name="btnRegresarIS">Regresar</string>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <!-- Pantalla Principal -->
+=======
+>>>>>>> e3f225e3d1a16e8000547b07367cc4d4e040eebf
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="txvPantPrin">EVENTOS</string>
     <string name="txvRegEventosPP">Registro de eventos</string>
     <string name="txvListaEventPP">Lista de eventos</string>
@@ -26,6 +39,12 @@
     <string name="txvListaProvPP">Lista de proveedores</string>
     <string name="txvCalendarioPP">Calendario</string>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <!-- Registro de Proveedores -->
+=======
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="txvRegEvento">REGISTRO DE EVENTOS</string>
     <string name="txvNombreRE">Nombre del cliente</string>
     <string name="txvDniRE">DNI</string>
@@ -75,9 +94,12 @@
     <string name="txtHoraEE">00:00 a.m.</string>
     <string name="txtUbiEE">Ubicación</string>
     <string name="txtTipoEE">Matrimonio, cumpleaños</string>
+<<<<<<< HEAD
     <string name="txnDniEE">0</string>
     <string name="txnInvitadosEE">0</string>
     <string name="txnTelefonoEE">0</string>
+=======
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="btnSiguienteEE">Siguiente</string>
     <string name="btnRegresararEE">Regresar</string>
 
@@ -87,6 +109,10 @@
     <string name="btnEliminarESE">Eliminar</string>
     <string name="btnGuardarESE">Guardar</string>
 
+<<<<<<< HEAD
+=======
+>>>>>>> e3f225e3d1a16e8000547b07367cc4d4e040eebf
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="txvRegProv2">REGISTRO DE PROVEEDORES</string>
     <string name="txvCodigoRP2">Código</string>
     <string name="txvTipoProvRP2">Tipo de proveedor</string>
@@ -94,18 +120,37 @@
     <string name="txvDireccionRP2">Dirección</string>
     <string name="txvDistritoRP2">Distrito</string>
     <string name="txvProvinciaRP2">Provincia</string>
+<<<<<<< HEAD
     <string name="txvServOfreceRP2">Servicio que ofrece</string>
+=======
+<<<<<<< HEAD
+=======
+    <string name="txvServOfreceRP2">Servicio que ofrece</string>
+>>>>>>> e3f225e3d1a16e8000547b07367cc4d4e040eebf
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="txvTelefonoRP2">Teléfono/celular</string>
     <string name="txvCorreoRP2">Correo electrónico</string>
     <string name="txnCodigoRP2">0</string>
     <string name="txtNombreRP2">Nombre</string>
     <string name="txtDireccionRP2">Dirección</string>
+<<<<<<< HEAD
     <string name="txtServOfreceRP2">Servicio</string>
+=======
+<<<<<<< HEAD
+=======
+    <string name="txtServOfreceRP2">Servicio</string>
+>>>>>>> e3f225e3d1a16e8000547b07367cc4d4e040eebf
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="txnTelefonoRP2">0</string>
     <string name="txtCorreoRP2">abc@ejemplo.com</string>
     <string name="btnSiguienteRP2">Siguiente</string>
     <string name="btnRegresarRP2">Regresar</string>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     <string name="txvServProv">SERVICIO DE PROVEEDOR</string>
     <string name="txvCodigoSP">Código</string>
     <string name="txvNombreSP">Nombre</string>
@@ -175,4 +220,8 @@
     <string name="txvSeleccionEF3">Seleccione para ver detalladamente</string>
     <string name="btnRegresarEF3">Regresar</string>
 
+<<<<<<< HEAD
+=======
+>>>>>>> e3f225e3d1a16e8000547b07367cc4d4e040eebf
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
 </resources>

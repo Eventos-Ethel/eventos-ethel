@@ -1,6 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<<<<<<< HEAD
     <style name="Base.Theme.RegistroEventosEthel" parent="Theme.Material3.DayNight.NoActionBar">
+=======
+    <style name="Base.Theme.TrabajoDEVOPS" parent="Theme.Material3.DayNight.NoActionBar">
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>

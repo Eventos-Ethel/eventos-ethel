@@ -2,11 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< HEAD
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:visibility="visible"
+=======
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
     tools:context=".IniciarSesion">
 
     <!-- Logo centrado -->
@@ -145,4 +151,20 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+<<<<<<< HEAD
+=======
+    <!-- Texto "¿Olvidaste tu contraseña?" -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/olvidaste_contrasena"
+        android:textColor="@color/peruvian_wine"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+>>>>>>> 2166c9ec5344b64a51ed10bd1d8f5174947e46c1
 </androidx.constraintlayout.widget.ConstraintLayout>
