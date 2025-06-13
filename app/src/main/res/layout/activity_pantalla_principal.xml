@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< HEAD
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
@@ -263,4 +264,11 @@
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+=======
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PantallaPrincipal">
+
+>>>>>>> e3f225e3d1a16e8000547b07367cc4d4e040eebf
 </androidx.constraintlayout.widget.ConstraintLayout>

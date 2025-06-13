@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <!-- Paleta peruana elegante -->
     <color name="peruvian_wine">#9E1F28</color>  <!-- Rojo vino peruano -->
     <color name="off_white">#F8F4F0</color>     <!-- Blanco roto elegante -->
@@ -16,4 +17,69 @@
     <!-- Colores para botones -->
     <color name="btnRegistrarRP2">#9E1F28</color>
     <color name="btnRegresarRP2">#F8F4F0</color>
+=======
+
+    <color name="peruvian_wine">#9E1F28</color>  <!-- Rojo vino peruano sofisticado -->
+    <color name="off_white">#F8F4F0</color>     <!-- Blanco roto elegante -->
+    <color name="warm_gray">#8C8C8C</color>     <!-- Gris cálido -->
+    <color name="white">#FFFFFF</color>
+    <color name="dark_gray">#333333</color>
+
+    <color name="black">#FF000000</color>
+
+    <color name="btnInicioSesion">#3070BD</color>
+    <color name="btnRegistrar">#3070BD</color>
+
+    <color name="btnAceptarReg">#3070BD</color>
+    <color name="btnRegresarReg">#BF124F</color>
+
+    <color name="btnAceptarIS">#3070BD</color>
+    <color name="btnRegresarIS">#BF124F</color>
+
+    <color name="btnRegistrarRE">#3070BD</color>
+    <color name="btnRegresarRE">#BF124F</color>
+
+    <color name="btnSiguienteEE">#3070BD</color>
+    <color name="btnRegresarEE">#BF124F</color>
+
+    <color name="btnRegistrarSE">#3070BD</color>
+    <color name="btnRegresarSE">#BF124F</color>
+
+    <color name="btnPersonaRP1">#8758D3</color>
+    <color name="btnEmpresaRP1">#8758D3</color>
+
+    <color name="btnRegistrarRP2">#3070BD</color>
+    <color name="btnRegresarRP2">#BF124F</color>
+
+    <color name="btnRegresarLP">#BF124F</color>
+
+    <color name="btnRegistrarEP">#3070BD</color>
+    <color name="btnEliminarEP">#BF124F</color>
+
+    <color name="btnFiltrarFecha">#28BD2E</color>
+    <color name="btnFiltrarUbi">#28BD2E</color>
+    <color name="btnFiltrarTE">#28BD2E</color>
+
+    <color name="btnRegresarLE">#BF124F</color>
+
+    <color name="btnRegresarCalendar">#BF124F</color>
+
+    <color name="btnRegresarEF1">#BF124F</color>
+
+    <color name="btnRegresarEF2">#BF124F</color>
+
+    <color name="btnRegresarEF3">#BF124F</color>
+
+    <color name="btnRegistrarSP">#3070BD</color>
+    <color name="btnRegresarSP">#BF124F</color>
+
+    <color name="btnRegresarLSP">#BF124F</color>
+
+    <color name="btnGuardarESP">#3070BD</color>
+    <color name="btnEliminarESP">#BF124F</color>
+
+    <color name="btnGuardarESE">#3070BD</color>
+    <color name="btnEliminarESE">#BF124F</color>
+
+>>>>>>> e3f225e3d1a16e8000547b07367cc4d4e040eebf
 </resources>
