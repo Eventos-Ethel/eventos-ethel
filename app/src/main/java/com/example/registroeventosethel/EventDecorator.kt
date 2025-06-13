@@ -1,6 +1,6 @@
 package com.example.registroeventosethel
 
-import android.graphics.Color
+
 import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import com.prolificinteractive.materialcalendarview.CalendarDay
