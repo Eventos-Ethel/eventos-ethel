@@ -35,6 +35,6 @@ class EventosAdapter(private var eventos: List<Evento>) :
 
     fun actualizarLista(nuevaLista: List<Evento>) {
         eventos = nuevaLista
-        notifyDataSetChanged()
+        this.notifyDataSetChanged()
     }
 }
