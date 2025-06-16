@@ -190,4 +190,8 @@
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in_short">Iniciar</string>
     <string name="action_sign_in">Iniciar sesión</string>
+
+    <string name="reportesAdm">Reportes :D</string>
+
+
 </resources>

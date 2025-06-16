@@ -9,7 +9,7 @@ class TipoUsuario : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tipo_usuario) // Asegúrate de que ese sea el nombre del layout
+        setContentView(R.layout.activity_tipo_usuario)
 
         // Referencias a las imágenes
         val imageAdmin = findViewById<ImageView>(R.id.imageView3)
@@ -17,13 +17,13 @@ class TipoUsuario : AppCompatActivity() {
 
         imageAdmin.setOnClickListener {
             // Ir a la pantalla de Administrador
-            val intent = Intent(this, PantallaPrincipal::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
         imageColaborador.setOnClickListener {
             // Ir a la pantalla de Colaborador
-            val intent = Intent(this, PantallaPrincipal::class.java)
+            val intent = Intent(this, ISAdmin::class.java)
             startActivity(intent)
         }
     }

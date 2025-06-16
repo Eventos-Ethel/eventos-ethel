@@ -49,7 +49,7 @@ class IniciarSesion : AppCompatActivity() {
 
         if (usuario != null && usuario.Contraseña == contraseña) {
             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-            val siguiente = Intent(this, TipoUsuario::class.java)
+            val siguiente = Intent(this, PantallaPrincipal::class.java)
             startActivity(siguiente)
         } else {
             Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show()

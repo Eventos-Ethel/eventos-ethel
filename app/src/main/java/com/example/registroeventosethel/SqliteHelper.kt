@@ -8,7 +8,7 @@ import android.util.Log
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuario.db", null, 5) { // Cambiado a versión 4
+class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuario.db", null, 7) { // Cambiado a versión 4
 
     companion object {
         private const val DATE_FORMAT = "dd/MM/yyyy"
@@ -20,8 +20,14 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
             CREATE TABLE usuario (
                 nombreUsuario TEXT PRIMARY KEY,
                 nombreCompleto TEXT,
-                contraseña TEXT
+                contraseña TEXT,
+                esAdmin INTEGER DEFAULT 0
             )
+        """)
+
+        db.execSQL("""
+            INSERT INTO usuario (nombreUsuario, nombreCompleto, contraseña, esAdmin)
+            VALUES ('admin', 'Administrador General', 'admin123', 1)
         """)
 
         db.execSQL("""CREATE TABLE evento_servicio (
@@ -80,6 +86,13 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
             )
         """)
 
+        db.execSQL("""CREATE TABLE IF NOT EXISTS evento_servicio (
+    id_evento INTEGER,
+    id_servicio INTEGER,
+    FOREIGN KEY(id_evento) REFERENCES eventos(id),
+    FOREIGN KEY(id_servicio) REFERENCES servicios(id)
+)""")
+
 
     }
 
@@ -88,6 +101,7 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         db.execSQL("DROP TABLE IF EXISTS proveedores")
         db.execSQL("DROP TABLE IF EXISTS servicios")
         db.execSQL("DROP TABLE IF EXISTS eventos")
+        db.execSQL("DROP TABLE IF EXISTS evento_servicio")
         onCreate(db)
     }
 
@@ -133,6 +147,7 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
             put("nombreUsuario", param.NombreUsuario)
             put("nombreCompleto", param.NombreCompleto)
             put("contraseña", param.Contraseña)
+            put("esAdmin", 0)
         }
 
         val db = this.writableDatabase
@@ -152,8 +167,16 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         if (cursor.moveToFirst()) {
             val nombreCompleto = cursor.getString(cursor.getColumnIndexOrThrow("nombreCompleto"))
             val contraseña = cursor.getString(cursor.getColumnIndexOrThrow("contraseña"))
-            usuario = Usuario(nombreCompleto, nombreUsuario, contraseña)
+            val esAdmin = cursor.getInt(cursor.getColumnIndexOrThrow("esAdmin")) == 1
+
+            usuario = Usuario(
+                nombreCompleto = nombreCompleto,
+                nombreUsuario = nombreUsuario,
+                contraseña = contraseña,
+                esAdmin = esAdmin
+            )
         }
+
 
         cursor.close()
         db.close()
@@ -522,6 +545,32 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         }
         return writableDatabase.insert("evento_servicio", null, values) != -1L
     }
+
+    fun obtenerEventosPorSemana(): Map<String, Int> {
+        val resultado = mutableMapOf<String, Int>()
+        val query = """
+        SELECT strftime('%Y-%W', fecha) AS semana, COUNT(*) AS total
+        FROM eventos
+        GROUP BY semana
+        ORDER BY semana
+    """.trimIndent()
+
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(query, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val semana = cursor.getString(cursor.getColumnIndexOrThrow("semana"))
+                val total = cursor.getInt(cursor.getColumnIndexOrThrow("total"))
+                resultado[semana] = total
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+        return resultado
+    }
+
 
 
 

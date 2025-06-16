@@ -56,8 +56,8 @@
                 android:id="@+id/txtNombreRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="@string/txtNombreRE"/>
+                android:hint="@string/txtNombreRE"
+                android:inputType="textPersonName"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
         <!-- DNI -->

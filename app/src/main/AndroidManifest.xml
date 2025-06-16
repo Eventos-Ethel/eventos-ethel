@@ -33,9 +33,13 @@
                 <activity android:name=".RegistrarUsuario" android:exported="false" />
                 <activity android:name=".PantallaPrincipal" android:exported="false" />
                 <activity android:name=".IniciarSesion" android:exported="false" />
-                <activity android:name=".TipoUsuario" />
+                <activity android:name=".ISAdmin" android:exported="false" />
+                <activity android:name=".PPAdmin" android:exported="false" />
+                <activity android:name=".AdminDashboard" android:exported="false" />
+
+                <activity android:name=".MainActivity" />
                 <activity
-                    android:name=".MainActivity"
+                    android:name=".TipoUsuario"
                     android:exported="true">
                         <intent-filter>
                                 <action android:name="android.intent.action.MAIN" />
