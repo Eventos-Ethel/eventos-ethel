@@ -26,21 +26,21 @@ class ListaProveedores : AppCompatActivity() {
                 val view = convertView ?: layoutInflater.inflate(R.layout.item_proveedor, parent, false)
                 val p = proveedores[position]
 
-                //Usa los IDs de tu layout personalizado
+                val servicio = db.obtenerServicioPorProveedor(p.id)
+                val tipoServicio = servicio?.tipo ?: "Sin servicio"
+                val precioServicio = if (servicio != null) "S/ ${servicio.costo}" else "S/ 0.00"
+
                 view.findViewById<TextView>(R.id.tvNombreProveedor).text = p.nombre
-                view.findViewById<TextView>(R.id.tvServicioProveedor).text = "${p.tipo} - S/ ${p.precio}"
+                view.findViewById<TextView>(R.id.tvServicioProveedor).text = "$tipoServicio - $precioServicio"
                 view.findViewById<TextView>(R.id.tvTelefonoProveedor).text = "📞 ${p.telefono}"
 
-                val btnEditar = view.findViewById<Button>(R.id.btnEditar)
-                val btnEliminar = view.findViewById<Button>(R.id.btnEliminar)
-
-                btnEditar.setOnClickListener {
+                view.findViewById<Button>(R.id.btnEditar).setOnClickListener {
                     val intent = Intent(this@ListaProveedores, EditarProveedores::class.java)
                     intent.putExtra("proveedor", p)
                     startActivity(intent)
                 }
 
-                btnEliminar.setOnClickListener {
+                view.findViewById<Button>(R.id.btnEliminar).setOnClickListener {
                     db.eliminarProveedor(p.id)
                     (proveedores as MutableList).removeAt(position)
                     notifyDataSetChanged()

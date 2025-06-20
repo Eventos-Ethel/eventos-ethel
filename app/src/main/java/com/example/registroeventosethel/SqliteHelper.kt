@@ -609,7 +609,11 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
 
     fun obtenerServicioPorProveedor(idProveedor: Long): Servicio? {
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM servicios WHERE id_proveedor = ?", arrayOf(idProveedor.toString()))
+        val cursor = db.rawQuery(
+            "SELECT * FROM servicios WHERE id_proveedor = ? LIMIT 1",
+            arrayOf(idProveedor.toString())
+        )
+
         var servicio: Servicio? = null
         if (cursor.moveToFirst()) {
             servicio = Servicio(
@@ -621,6 +625,7 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
                 idProveedor = cursor.getLong(cursor.getColumnIndexOrThrow("id_proveedor"))
             )
         }
+
         cursor.close()
         return servicio
     }
