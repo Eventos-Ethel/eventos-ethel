@@ -64,8 +64,21 @@ class ServicioEvento : AppCompatActivity() {
         val btnRegistrarSE = findViewById<Button>(R.id.btnRegistrarSE)
 
         btnRegresarSE.setOnClickListener {
-            startActivity(Intent(this, RegistroEvento::class.java))
+            val intent = Intent(this, RegistroEvento::class.java).apply {
+                putExtra("nombre", intent.getStringExtra("nombre"))
+                putExtra("dni", intent.getStringExtra("dni"))
+                putExtra("celular", intent.getStringExtra("celular"))
+                putExtra("descripcion", intent.getStringExtra("descripcion"))
+                putExtra("fecha", intent.getStringExtra("fecha"))
+                putExtra("hora", intent.getStringExtra("hora"))
+                putExtra("tipo", intent.getStringExtra("tipo"))
+                putExtra("invitados", intent.getIntExtra("invitados", 0))
+                putExtra("ubicacion", intent.getStringExtra("ubicacion"))
+            }
+            startActivity(intent)
+            finish()
         }
+
 
         btnRegistrarSE.setOnClickListener {
             val checkedPositions = listView.checkedItemPositions

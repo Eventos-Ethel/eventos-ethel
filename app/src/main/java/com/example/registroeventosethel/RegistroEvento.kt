@@ -21,6 +21,20 @@ class RegistroEvento : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro_evento)
 
+        val extras = intent.extras
+        extras?.let {
+            findViewById<EditText>(R.id.txtNombreRE).setText(it.getString("nombre", ""))
+            findViewById<EditText>(R.id.txnDniRE).setText(it.getString("dni", ""))
+            findViewById<EditText>(R.id.txnCelularRE).setText(it.getString("celular", ""))
+            findViewById<EditText>(R.id.txtDescripcionRE).setText(it.getString("descripcion", ""))
+            findViewById<EditText>(R.id.txtFechaRE).setText(it.getString("fecha", ""))
+            findViewById<EditText>(R.id.txtHoraRE).setText(it.getString("hora", ""))
+            findViewById<EditText>(R.id.txtTipoRE).setText(it.getString("tipo", ""))
+            findViewById<EditText>(R.id.txnInvitadosRE).setText(it.getInt("invitados", 0).toString())
+            findViewById<EditText>(R.id.txtUbiRE).setText(it.getString("ubicacion", ""))
+        }
+
+
         val btnRegresarRE = findViewById<Button>(R.id.btnRegresarRE)
         val btnSiguienteRE = findViewById<Button>(R.id.btnSiguienteRE)
         val txtFechaRE = findViewById<EditText>(R.id.txtFechaRE)
