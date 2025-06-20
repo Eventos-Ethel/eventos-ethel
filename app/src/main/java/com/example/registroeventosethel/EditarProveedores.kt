@@ -45,7 +45,7 @@ class EditarProveedores : AppCompatActivity() {
         spinnerProvincia.setSelection(provincias.indexOf(proveedor.provincia))
         spinnerDistrito.setSelection(distritos.indexOf(proveedor.distrito))
 
-        // Tipos de servicio
+        // Tipo de proveedor
         val tipos = listOf("Persona", "Empresa")
         val tipoAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tipos)
         spinnerTipo.adapter = tipoAdapter
@@ -73,7 +73,9 @@ class EditarProveedores : AppCompatActivity() {
             val actualizado = db.actualizarProveedor(proveedorActualizado)
             if (actualizado) {
                 Toast.makeText(this, "Proveedor actualizado correctamente", Toast.LENGTH_SHORT).show()
-                finish()
+                val intent = Intent(this, EditarServicioProv::class.java)
+                intent.putExtra("proveedorId", proveedor.id)
+                startActivity(intent)
             } else {
                 Toast.makeText(this, "Error al actualizar proveedor", Toast.LENGTH_SHORT).show()
             }

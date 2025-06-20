@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/txtNombreRP2" />
+                android:hint="Nombre" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Dirección -->
@@ -119,7 +119,7 @@
                 android:id="@+id/txtDireccionRP2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txtDireccionRP2"
+                android:hint="@string/txtDireccionRP2"
                 android:inputType="textPostalAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,7 +182,7 @@
                 android:id="@+id/txnTelefonoRP2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txnTelefonoRP2"
+                android:hint="987654321"
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -203,7 +203,7 @@
                 android:id="@+id/txtCorreoRP2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txtCorreoRP2"
+                android:hint="@string/txtCorreoRP2"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 

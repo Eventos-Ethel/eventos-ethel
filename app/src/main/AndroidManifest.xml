@@ -36,6 +36,7 @@
                 <activity android:name=".ISAdmin" android:exported="false" />
                 <activity android:name=".PPAdmin" android:exported="false" />
                 <activity android:name=".AdminDashboard" android:exported="false" />
+                <activity android:name=".RecuperarContrasena" android:exported="false" />
 
                 <activity android:name=".MainActivity" />
                 <activity

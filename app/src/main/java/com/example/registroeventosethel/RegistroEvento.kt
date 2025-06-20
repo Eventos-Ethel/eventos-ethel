@@ -1,5 +1,7 @@
 package com.example.registroeventosethel
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +12,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class RegistroEvento : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,10 +23,43 @@ class RegistroEvento : AppCompatActivity() {
 
         val btnRegresarRE = findViewById<Button>(R.id.btnRegresarRE)
         val btnSiguienteRE = findViewById<Button>(R.id.btnSiguienteRE)
+        val txtFechaRE = findViewById<EditText>(R.id.txtFechaRE)
+        val txtHoraRE = findViewById<EditText>(R.id.txtHoraRE)
 
         btnRegresarRE.setOnClickListener{
             val siguiente = Intent(this, PantallaPrincipal::class.java)
             startActivity(siguiente)
+        }
+
+        txtFechaRE.setOnClickListener {
+            val calendario = Calendar.getInstance()
+            val año = calendario.get(Calendar.YEAR)
+            val mes = calendario.get(Calendar.MONTH)
+            val dia = calendario.get(Calendar.DAY_OF_MONTH)
+
+            val datePicker = DatePickerDialog(this, { _, year, month, dayOfMonth ->
+                val fechaFormateada = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year)
+                txtFechaRE.setText(fechaFormateada)
+        }, año, mes, dia)
+            datePicker.show()
+            }
+
+        txtHoraRE.setOnClickListener {
+            val calendario = Calendar.getInstance()
+            val hora = calendario.get(Calendar.HOUR_OF_DAY)
+            val minuto = calendario.get(Calendar.MINUTE)
+
+            val timePicker = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
+                val calendar = Calendar.getInstance().apply {
+                    set(Calendar.HOUR_OF_DAY, selectedHour)
+                    set(Calendar.MINUTE, selectedMinute)
+                }
+                val formato = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                val horaFormateada = formato.format(calendar.time)
+                txtHoraRE.setText(horaFormateada)
+            }, hora, minuto, false) // false = formato 12 horas
+
+            timePicker.show()
         }
 
         btnSiguienteRE.setOnClickListener {

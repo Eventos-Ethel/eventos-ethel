@@ -565,13 +565,75 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
                 resultado[semana] = total
             } while (cursor.moveToNext())
         }
-
         cursor.close()
         db.close()
         return resultado
     }
 
+    fun obtenerServicioPorProveedorId(idProveedor: Long): Servicio? {
+        val db = readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT * FROM servicios WHERE id_proveedor = ? LIMIT 1",
+            arrayOf(idProveedor.toString())
+        )
 
+        var servicio: Servicio? = null
+        if (cursor.moveToFirst()) {
+            servicio = Servicio(
+                id = cursor.getLong(cursor.getColumnIndexOrThrow("id")),
+                codigo = cursor.getString(cursor.getColumnIndexOrThrow("codigo")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                tipo = cursor.getString(cursor.getColumnIndexOrThrow("tipo")),
+                costo = cursor.getDouble(cursor.getColumnIndexOrThrow("costo")),
+                idProveedor = cursor.getLong(cursor.getColumnIndexOrThrow("id_proveedor"))
+            )
+        }
+
+        cursor.close()
+        db.close()
+        return servicio
+    }
+
+    fun actualizarServicio(servicio: Servicio): Boolean {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("codigo", servicio.codigo)
+            put("nombre", servicio.nombre)
+            put("tipo", servicio.tipo)
+            put("costo", servicio.costo)
+        }
+        val resultado = db.update("servicios", values, "id = ?", arrayOf(servicio.id.toString()))
+        db.close()
+        return resultado > 0
+    }
+
+    fun obtenerServicioPorProveedor(idProveedor: Long): Servicio? {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM servicios WHERE id_proveedor = ?", arrayOf(idProveedor.toString()))
+        var servicio: Servicio? = null
+        if (cursor.moveToFirst()) {
+            servicio = Servicio(
+                id = cursor.getLong(cursor.getColumnIndexOrThrow("id")),
+                codigo = cursor.getString(cursor.getColumnIndexOrThrow("codigo")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                tipo = cursor.getString(cursor.getColumnIndexOrThrow("tipo")),
+                costo = cursor.getDouble(cursor.getColumnIndexOrThrow("costo")),
+                idProveedor = cursor.getLong(cursor.getColumnIndexOrThrow("id_proveedor"))
+            )
+        }
+        cursor.close()
+        return servicio
+    }
+
+    fun actualizarServicio(id: Long, nombre: String, tipo: String, costo: Double): Boolean {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("nombre", nombre)
+            put("tipo", tipo)
+            put("costo", costo)
+        }
+        return db.update("servicios", values, "id = ?", arrayOf(id.toString())) > 0
+    }
 
 
 

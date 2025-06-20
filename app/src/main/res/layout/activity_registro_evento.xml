@@ -77,7 +77,6 @@
                 android:id="@+id/txnDniRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txnDniRE"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +97,6 @@
                 android:id="@+id/txnCelularRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txnCelular"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +117,6 @@
                 android:id="@+id/txtDescripcionRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txtDescripcionRE"
                 android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,8 +137,8 @@
                 android:id="@+id/txtFechaRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txtFechaRE"
-                android:inputType="date" />
+                android:focusable="false"
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Hora -->
@@ -161,8 +158,8 @@
                 android:id="@+id/txtHoraRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txtHoraRE"
-                android:inputType="date" />
+                android:focusable="false"
+                android:inputType="none" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Ubicación -->
@@ -182,7 +179,6 @@
                 android:id="@+id/txtUbiRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txtUbiRE"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -203,7 +199,7 @@
                 android:id="@+id/txtTipoRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txtTipoRE"
+                android:hint="@string/txtTipoRE"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -224,7 +220,6 @@
                 android:id="@+id/txnInvitadosRE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txnInvitadosRE"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
