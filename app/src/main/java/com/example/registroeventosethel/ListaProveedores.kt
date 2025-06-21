@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class ListaProveedores : AppCompatActivity() {
@@ -13,7 +14,7 @@ class ListaProveedores : AppCompatActivity() {
         setContentView(R.layout.activity_lista_proveedores)
 
         val db = SqliteHelper(this)
-        val proveedores = db.obtenerProveedores()
+        val proveedores = db.obtenerProveedores().toMutableList()
         val btnRegresarLP = findViewById<Button>(R.id.btnRegresarLP)
         val gridView = findViewById<GridView>(R.id.gridViewProveedores)
 
@@ -41,10 +42,21 @@ class ListaProveedores : AppCompatActivity() {
                 }
 
                 view.findViewById<Button>(R.id.btnEliminar).setOnClickListener {
-                    db.eliminarProveedor(p.id)
-                    (proveedores as MutableList).removeAt(position)
-                    notifyDataSetChanged()
-                    Toast.makeText(this@ListaProveedores, "Proveedor eliminado", Toast.LENGTH_SHORT).show()
+                    AlertDialog.Builder(this@ListaProveedores)
+                        .setTitle("¿Eliminar proveedor?")
+                        .setMessage("¿Deseas eliminar este proveedor y su servicio asociado?")
+                        .setPositiveButton("Sí") { _, _ ->
+                            val eliminado = db.eliminarProveedor(p.id)
+                            if (eliminado) {
+                                proveedores.removeAt(position)
+                                notifyDataSetChanged()
+                                Toast.makeText(this@ListaProveedores, "Proveedor eliminado", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(this@ListaProveedores, "Error al eliminar", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        .setNegativeButton("Cancelar", null)
+                        .show()
                 }
 
                 return view

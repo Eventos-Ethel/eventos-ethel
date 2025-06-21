@@ -2,13 +2,8 @@ package com.example.registroeventosethel
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class RegistrarUsuario : AppCompatActivity() {
 
@@ -35,14 +30,13 @@ class RegistrarUsuario : AppCompatActivity() {
         }
 
         btnRegresarReg?.setOnClickListener {
-            val siguiente = Intent(this, MainActivity::class.java)
-            startActivity(siguiente)
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
     private fun registrarUsuario() {
-        val nombreCompleto = editTextNombreCompleto?.text?.toString()
-        val nombreUsuario = editTextNombreUsuario?.text?.toString()
+        val nombreCompleto = editTextNombreCompleto?.text?.toString()?.trim()
+        val nombreUsuario = editTextNombreUsuario?.text?.toString()?.trim()
         val contraseña = editTextContraseña?.text?.toString()
         val confirmarContraseña = editTextConfirmarContraseña?.text?.toString()
 
@@ -56,21 +50,33 @@ class RegistrarUsuario : AppCompatActivity() {
             return
         }
 
+        if (!esContraseñaValida(contraseña)) {
+            Toast.makeText(
+                this,
+                "La contraseña debe tener al menos una mayúscula, una minúscula y un número",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
         val dbHelper = SqliteHelper(this)
 
-        if (dbHelper.usuarioExiste(nombreUsuario)){
+        if (dbHelper.usuarioExiste(nombreUsuario)) {
             Toast.makeText(this, "El nombre de usuario ya existe", Toast.LENGTH_SHORT).show()
             return
         }
 
         val usuario = Usuario(nombreCompleto, nombreUsuario, contraseña)
-        if (dbHelper.registrarUsuario(usuario)){
+        if (dbHelper.registrarUsuario(usuario)) {
             Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
-            val siguiente = Intent(this, MainActivity::class.java)
-            startActivity(siguiente)
-        }
-        else {
+            startActivity(Intent(this, MainActivity::class.java))
+        } else {
             Toast.makeText(this, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun esContraseñaValida(contraseña: String): Boolean {
+        val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$")
+        return regex.matches(contraseña)
     }
 }

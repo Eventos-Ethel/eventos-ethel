@@ -446,15 +446,18 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
     }
 
     fun eliminarProveedor(id: Long): Boolean {
-        val db = this.writableDatabase
+        val db = writableDatabase
         return try {
+            // Eliminar servicios relacionados primero
+            db.delete("servicios", "id_proveedor = ?", arrayOf(id.toString()))
+            // Luego eliminar proveedor
             db.delete("proveedores", "id = ?", arrayOf(id.toString()))
-            db.close()
             true
         } catch (e: Exception) {
-            Log.e("DB_EXCEPTION", "Excepción al eliminar proveedor: ${e.message}")
-            db.close()
+            Log.e("DB_EXCEPTION", "Error al eliminar proveedor y servicios: ${e.message}")
             false
+        } finally {
+            db.close()
         }
     }
 
@@ -639,6 +642,18 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         }
         return db.update("servicios", values, "id = ?", arrayOf(id.toString())) > 0
     }
+
+    fun eliminarServiciosPorProveedor(idProveedor: Long): Boolean {
+        val db = writableDatabase
+        return try {
+            db.delete("servicios", "id_proveedor = ?", arrayOf(idProveedor.toString()))
+            true
+        } catch (e: Exception) {
+            Log.e("DB_EXCEPTION", "Error al eliminar servicios del proveedor: ${e.message}")
+            false
+        }
+    }
+
 
 
 

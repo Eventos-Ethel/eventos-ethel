@@ -89,38 +89,34 @@ class ServicioEvento : AppCompatActivity() {
                 }
             }
 
-            if (serviciosSeleccionados.isNotEmpty()) {
-                val precioUsuario = costoEvento.text.toString().toDoubleOrNull() ?: 0.0
-                val sumaServicios = serviciosSeleccionados.sumOf { it.costo }
-                val total = precioUsuario + sumaServicios
+            val precioUsuario = costoEvento.text.toString().toDoubleOrNull() ?: 0.0
+            val sumaServicios = serviciosSeleccionados.sumOf { it.costo }
+            val total = precioUsuario + sumaServicios
 
-                val idEvento = dbHelper.registrarEvento(
-                    intent.getStringExtra("nombre") ?: "",
-                    intent.getStringExtra("dni") ?: "",
-                    intent.getStringExtra("celular") ?: "",
-                    intent.getStringExtra("descripcion") ?: "",
-                    intent.getStringExtra("fecha") ?: "",
-                    intent.getStringExtra("hora") ?: "",
-                    intent.getStringExtra("tipo") ?: "",
-                    intent.getIntExtra("invitados", 0),
-                    intent.getStringExtra("ubicacion") ?: "",
-                    total,
-                    -1
-                )
+            val idEvento = dbHelper.registrarEvento(
+                intent.getStringExtra("nombre") ?: "",
+                intent.getStringExtra("dni") ?: "",
+                intent.getStringExtra("celular") ?: "",
+                intent.getStringExtra("descripcion") ?: "",
+                intent.getStringExtra("fecha") ?: "",
+                intent.getStringExtra("hora") ?: "",
+                intent.getStringExtra("tipo") ?: "",
+                intent.getIntExtra("invitados", 0),
+                intent.getStringExtra("ubicacion") ?: "",
+                total,
+                -1
+            )
 
-                if (idEvento != -1L) {
-                    serviciosSeleccionados.forEach { servicio ->
-                        dbHelper.insertarEventoServicio(idEvento, servicio.id)
-                    }
-
-                    Toast.makeText(this, "Evento registrado con éxito", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, PantallaPrincipal::class.java))
-                    finish()
-                } else {
-                    Toast.makeText(this, "Error al registrar evento", Toast.LENGTH_SHORT).show()
+            if (idEvento != -1L) {
+                serviciosSeleccionados.forEach { servicio ->
+                    dbHelper.insertarEventoServicio(idEvento, servicio.id)
                 }
+
+                Toast.makeText(this, "Evento registrado con éxito", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, PantallaPrincipal::class.java))
+                finish()
             } else {
-                Toast.makeText(this, "Selecciona al menos un servicio", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error al registrar evento", Toast.LENGTH_SHORT).show()
             }
         }
     }
