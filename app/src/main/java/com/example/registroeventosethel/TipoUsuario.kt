@@ -16,14 +16,14 @@ class TipoUsuario : AppCompatActivity() {
         val imageColaborador = findViewById<ImageView>(R.id.imageView2)
 
         imageAdmin.setOnClickListener {
-            // Ir a la pantalla de Administrador
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("esAdmin", true) // colaborador
             startActivity(intent)
         }
 
         imageColaborador.setOnClickListener {
-            // Ir a la pantalla de Colaborador
             val intent = Intent(this, ISAdmin::class.java)
+            intent.putExtra("esAdmin", false) // administrador
             startActivity(intent)
         }
     }

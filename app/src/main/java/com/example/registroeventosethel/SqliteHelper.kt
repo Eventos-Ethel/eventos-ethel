@@ -93,6 +93,18 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
     FOREIGN KEY(id_servicio) REFERENCES servicios(id)
 )""")
 
+        db.execSQL("""
+    CREATE TABLE auditoria (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        usuario TEXT,
+        rol TEXT,
+        accion TEXT,
+        entidad TEXT,
+        detalle TEXT,
+        fechaHora TEXT
+                            )
+                """)
+
 
     }
 
@@ -102,6 +114,7 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         db.execSQL("DROP TABLE IF EXISTS servicios")
         db.execSQL("DROP TABLE IF EXISTS eventos")
         db.execSQL("DROP TABLE IF EXISTS evento_servicio")
+        db.execSQL("DROP TABLE IF EXISTS auditoria")
         onCreate(db)
     }
 
@@ -409,8 +422,27 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
 
     // Métodos para eliminar registros
     fun eliminarEvento(id: Long): Boolean {
-        return writableDatabase.delete("eventos", "id = ?", arrayOf(id.toString())) > 0
+        val db = writableDatabase
+        return try {
+            db.beginTransaction()
+
+            // Eliminar primero los registros relacionados en evento_servicio
+            db.delete("evento_servicio", "id_evento = ?", arrayOf(id.toString()))
+
+            // Luego eliminar el evento
+            val rows = db.delete("eventos", "id = ?", arrayOf(id.toString()))
+
+            db.setTransactionSuccessful()
+            rows > 0
+        } catch (e: Exception) {
+            Log.e("DB_EXCEPTION", "Error al eliminar evento y sus servicios: ${e.message}")
+            false
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
     }
+
 
     fun actualizarProveedor(
         id: Long,
@@ -653,6 +685,21 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
             false
         }
     }
+
+    fun registrarAuditoria(usuario: String, rol: String, accion: String, entidad: String, detalle: String) {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("usuario", usuario)
+            put("rol", rol)
+            put("accion", accion)
+            put("entidad", entidad)
+            put("detalle", detalle)
+            put("fechaHora", java.time.LocalDateTime.now().toString())
+        }
+        db.insert("auditoria", null, values)
+        db.close()
+    }
+
 
 
 

@@ -24,16 +24,23 @@ class ISAdmin : AppCompatActivity() {
         btnRegresar = findViewById(R.id.btnRegresarIS)
 
         btnAceptar.setOnClickListener {
-            val usuario = txtUsuario.text.toString()
-            val contraseña = txtContraseña.text.toString()
+            val usuarioTexto = txtUsuario.text.toString()
+            val contraseñaTexto = txtContraseña.text.toString()
+            val db = SqliteHelper(this)
+            val usuario = db.obtenerUsuario(usuarioTexto)
 
-            if (usuario == "admin" && contraseña == "admin123") {
+            if (usuario != null && usuario.Contraseña == contraseñaTexto) {
+                if (!usuario.esAdmin) {
+                    Toast.makeText(this, "Este usuario no es administrador", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 Toast.makeText(this, "Bienvenido Administrador", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, PPAdmin::class.java))
             } else {
                 Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
             }
         }
+
 
         btnRegresar.setOnClickListener {
             val regresar = Intent(this, TipoUsuario::class.java)

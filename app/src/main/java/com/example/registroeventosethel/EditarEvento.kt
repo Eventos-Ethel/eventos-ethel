@@ -60,6 +60,7 @@ class EditarEvento : AppCompatActivity() {
                 txtUbicacion.text.toString(),
                 evento.precio
             )
+
             if (actualizado) {
                 Toast.makeText(this, "Evento actualizado", Toast.LENGTH_SHORT).show()
                 finish()

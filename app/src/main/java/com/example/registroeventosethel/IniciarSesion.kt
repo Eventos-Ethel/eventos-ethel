@@ -46,11 +46,12 @@ class IniciarSesion : AppCompatActivity() {
 
     }
 
-    private fun iniciarSesion(){
+    private fun iniciarSesion() {
         val nombreUsuario = editTextNombreUsuario?.text?.toString()
         val contraseña = editTextContraseña?.text?.toString()
+        val esAdminEsperado = intent.getBooleanExtra("esAdmin", false)
 
-        if (nombreUsuario.isNullOrBlank() || contraseña.isNullOrBlank()){
+        if (nombreUsuario.isNullOrBlank() || contraseña.isNullOrBlank()) {
             Toast.makeText(this, "Por favor completar todos los datos", Toast.LENGTH_SHORT).show()
             return
         }
@@ -59,9 +60,12 @@ class IniciarSesion : AppCompatActivity() {
         val usuario = dbHelper.obtenerUsuario(nombreUsuario)
 
         if (usuario != null && usuario.Contraseña == contraseña) {
+            if (usuario.esAdmin != esAdminEsperado) {
+                Toast.makeText(this, "Solo colaboradores", Toast.LENGTH_SHORT).show()
+                return
+            }
             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-            val siguiente = Intent(this, PantallaPrincipal::class.java)
-            startActivity(siguiente)
+            startActivity(Intent(this, PantallaPrincipal::class.java))
         } else {
             Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show()
         }

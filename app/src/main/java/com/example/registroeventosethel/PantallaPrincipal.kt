@@ -43,7 +43,7 @@ class PantallaPrincipal : AppCompatActivity() {
 
         val btnCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
         btnCerrarSesion.setOnClickListener {
-            val i = Intent(this, IniciarSesion::class.java)
+            val i = Intent(this, TipoUsuario::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(i)
         }
