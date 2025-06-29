@@ -19,14 +19,22 @@ class PantallaPrincipal : AppCompatActivity() {
         val imbListProvPP = findViewById<ImageButton>(R.id.imbListProvPP)
         val imbListEventPP = findViewById<ImageButton>(R.id.imbListEventPP)
         val imbCalendarioPP = findViewById<ImageButton>(R.id.imbCalendarioPP)
+        val usuario = intent.getStringExtra("usuario") ?: "desconocido"
+        val rol = intent.getStringExtra("rol") ?: "desconocido"
+
 
         imbRegProvPP.setOnClickListener{
-            val siguiente = Intent(this, RegistroProveedor2::class.java)
-            startActivity(siguiente)
+            val intent = Intent(this, RegistroProveedor2::class.java)
+            intent.putExtra("usuario", usuario)
+            intent.putExtra("rol", rol)
+            startActivity(intent)
         }
         imbRegEventPP.setOnClickListener{
-            val siguiente = Intent(this, RegistroEvento::class.java)
-            startActivity(siguiente)
+            val intent = Intent(this, RegistroEvento::class.java)
+            intent.putExtra("usuario", usuario)
+            intent.putExtra("rol", rol)
+            startActivity(intent)
+
         }
         imbListProvPP.setOnClickListener{
             val siguiente = Intent(this, ListaProveedores::class.java)

@@ -16,6 +16,9 @@ class RegistroProveedor2 : AppCompatActivity() {
 
         dbHelper = SqliteHelper(this)
 
+        val usuarioActual = intent.getStringExtra("usuario") ?: "desconocido"
+        val rolUsuario = intent.getStringExtra("rol") ?: "desconocido"
+
         val etCodigo = findViewById<EditText>(R.id.txnCodigoRP2)
         val spnTipoProvRP2 = findViewById<Spinner>(R.id.spnTipoProvRP2)
         val etNombre = findViewById<EditText>(R.id.txtNombreRP2)
@@ -28,52 +31,30 @@ class RegistroProveedor2 : AppCompatActivity() {
         val btnRegresar = findViewById<Button>(R.id.btnRegresarRP2)
 
         etCodigo.setText(dbHelper.generarCodigoProveedor())
-        etCodigo.isEnabled = false // para que no lo editen manualmente
+        etCodigo.isEnabled = false
 
-
-        // Adaptador para el spinner de tipo de proveedor
+        // Adaptadores para los spinners
         val adapterTipoProveedor = ArrayAdapter.createFromResource(
             this,
             R.array.tipo_prov_opc,
             android.R.layout.simple_spinner_item
-        ).apply {
-            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
+        ).apply { setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
         spnTipoProvRP2.adapter = adapterTipoProveedor
 
-        // Adaptador para el spinner de provincias
         val adapterProvincias = ArrayAdapter.createFromResource(
             this,
             R.array.provincia_opc,
             android.R.layout.simple_spinner_item
-        ).apply {
-            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
+        ).apply { setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
         spnProvinciaRP2.adapter = adapterProvincias
 
-        // Adaptador para el spinner de distritos (inicialmente vacío)
         val adapterDistritos = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
         adapterDistritos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnDistritoRP2.adapter = adapterDistritos
 
-        // Listener para el spinner de provincias
-        spnProvinciaRP2.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // Obtener la provincia seleccionada
-                val provinciaSeleccionada = parent?.getItemAtPosition(position).toString()
-
-                // Cargar los distritos correspondientes a la provincia seleccionada
-                cargarDistritos(provinciaSeleccionada)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                adapterDistritos.clear()
-                adapterDistritos.add("Seleccionar distrito")
-                spnDistritoRP2.setSelection(0)
-            }
-
-            // Método para cargar los distritos según la provincia seleccionada
-            private fun cargarDistritos(provincia: String) {
+        spnProvinciaRP2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                val provincia = parent?.getItemAtPosition(pos).toString()
                 val idArrayDistritos = when (provincia) {
                     "Barranca" -> R.array.dist_barranca_opc
                     "Cajatambo" -> R.array.dist_cajatambo_opc
@@ -88,19 +69,21 @@ class RegistroProveedor2 : AppCompatActivity() {
                     else -> 0
                 }
 
-                // Cargar los distritos desde los recursos
+                adapterDistritos.clear()
+                adapterDistritos.add("Seleccionar distrito")
                 if (idArrayDistritos != 0) {
                     val distritos = resources.getStringArray(idArrayDistritos)
-                    adapterDistritos.clear()
-                    adapterDistritos.add("Seleccionar distrito")
-                    adapterDistritos.addAll(*distritos) // Usamos * para descomponer el array
-                } else {
-                    adapterDistritos.clear()
-                    adapterDistritos.add("Seleccionar distrito")
+                    adapterDistritos.addAll(*distritos)
                 }
                 spnDistritoRP2.setSelection(0)
             }
-        })
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                adapterDistritos.clear()
+                adapterDistritos.add("Seleccionar distrito")
+                spnDistritoRP2.setSelection(0)
+            }
+        }
 
         btnSiguiente.setOnClickListener {
             val codigo = etCodigo.text.toString()
@@ -118,7 +101,7 @@ class RegistroProveedor2 : AppCompatActivity() {
             }
 
             val proveedor = Proveedor(
-                id = 0L, // Se autogenera en la base de datos
+                id = 0L,
                 codigo = codigo,
                 tipo = tipo,
                 nombre = nombre,
@@ -127,15 +110,25 @@ class RegistroProveedor2 : AppCompatActivity() {
                 distrito = distrito,
                 telefono = telefono,
                 correo = correo,
-                precio = 0.0 // ← el precio ya se gestiona por servicio
+                precio = 0.0
             )
 
             val idProveedor = dbHelper.insertarProveedor(proveedor)
 
             if (idProveedor != -1L) {
+                dbHelper.registrarAuditoria(
+                    usuario = usuarioActual,
+                    rol = rolUsuario,
+                    accion = "Registro",
+                    entidad = "Proveedor",
+                    detalle = "Proveedor registrado: $nombre ($codigo)"
+                )
+
                 Toast.makeText(this, "Proveedor registrado correctamente", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, AgregarServicio::class.java)
                 intent.putExtra("proveedorId", idProveedor)
+                intent.putExtra("usuario", usuarioActual)
+                intent.putExtra("rol", rolUsuario)
                 startActivity(intent)
                 finish()
             } else {

@@ -34,8 +34,18 @@ class ISAdmin : AppCompatActivity() {
                     Toast.makeText(this, "Este usuario no es administrador", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
+                val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+                prefs.edit()
+                    .putString("usuario", usuario.NombreUsuario)
+                    .putString("rol", "Administrador")
+                    .apply()
+
                 Toast.makeText(this, "Bienvenido Administrador", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, PPAdmin::class.java))
+                val intent = Intent(this, PPAdmin::class.java)
+                intent.putExtra("usuario", usuario.NombreUsuario)
+                intent.putExtra("rol", "Administrador")
+                startActivity(intent)
+
             } else {
                 Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
             }

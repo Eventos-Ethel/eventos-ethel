@@ -15,6 +15,8 @@ class ServicioEvento : AppCompatActivity() {
     private lateinit var costoEvento: EditText
     private lateinit var txvCostoSE: TextView
     private lateinit var selectedItems: MutableSet<Int>
+    private lateinit var usuario: String
+    private lateinit var rol: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,9 @@ class ServicioEvento : AppCompatActivity() {
         costoEvento = findViewById(R.id.txndCostoEventoSE)
         txvCostoSE = findViewById(R.id.txvCostoSE)
         selectedItems = mutableSetOf()
+
+        usuario = intent.getStringExtra("usuario") ?: "desconocido"
+        rol = intent.getStringExtra("rol") ?: "desconocido"
 
         val servicios = dbHelper.obtenerServicios()
 
@@ -74,11 +79,12 @@ class ServicioEvento : AppCompatActivity() {
                 putExtra("tipo", intent.getStringExtra("tipo"))
                 putExtra("invitados", intent.getIntExtra("invitados", 0))
                 putExtra("ubicacion", intent.getStringExtra("ubicacion"))
+                putExtra("usuario", usuario)
+                putExtra("rol", rol)
             }
             startActivity(intent)
             finish()
         }
-
 
         btnRegistrarSE.setOnClickListener {
             val checkedPositions = listView.checkedItemPositions
@@ -111,6 +117,20 @@ class ServicioEvento : AppCompatActivity() {
                 serviciosSeleccionados.forEach { servicio ->
                     dbHelper.insertarEventoServicio(idEvento, servicio.id)
                 }
+
+                val nombreCliente = intent.getStringExtra("nombre") ?: ""
+                val fecha = intent.getStringExtra("fecha") ?: ""
+                val hora = intent.getStringExtra("hora") ?: ""
+                val tipoEvento = intent.getStringExtra("tipo") ?: ""
+
+                val detalle = "Evento registrado: $nombreCliente - $tipoEvento el $fecha a las $hora. Total: S/ %.2f".format(total)
+                dbHelper.registrarAuditoria(
+                    usuario = usuario,
+                    rol = rol,
+                    accion = "Registro",
+                    entidad = "Evento",
+                    detalle = detalle
+                )
 
                 Toast.makeText(this, "Evento registrado con éxito", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, PantallaPrincipal::class.java))

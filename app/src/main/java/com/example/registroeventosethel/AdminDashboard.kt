@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import android.content.Intent
+import android.widget.Button
 
 class AdminDashboard : AppCompatActivity() {
 
@@ -25,6 +27,12 @@ class AdminDashboard : AppCompatActivity() {
         tvTotalIngresos = findViewById(R.id.tvTotalIngresos)
 
         mostrarInformes()
+        val btnVerAuditoria = findViewById<Button>(R.id.btnVerAuditoria)
+        btnVerAuditoria.setOnClickListener {
+            val intent = Intent(this, ListaAuditoria::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun mostrarInformes() {
@@ -58,4 +66,5 @@ class AdminDashboard : AppCompatActivity() {
         tvEventosMes.text = "Eventos este mes: $eventosMes"
         tvTotalIngresos.text = "Ingresos totales del mes: S/ %.2f".format(ingresosMes)
     }
+
 }

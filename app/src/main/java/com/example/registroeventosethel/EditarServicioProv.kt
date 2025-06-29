@@ -9,10 +9,14 @@ class EditarServicioProv : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_agregar_servicio) // Puedes reutilizar el layout existente
+        setContentView(R.layout.activity_agregar_servicio) // Se reutiliza layout
 
-        val proveedorId = intent.getLongExtra("proveedorId", -1L)
         val db = SqliteHelper(this)
+        val proveedorId = intent.getLongExtra("proveedorId", -1L)
+
+        //Usuario actual
+        val usuarioActual = intent.getStringExtra("usuario") ?: "desconocido"
+        val rolUsuario = intent.getStringExtra("rol") ?: "desconocido"
 
         val servicio = db.obtenerServicioPorProveedor(proveedorId)
         val etCodigo = findViewById<EditText>(R.id.txnCodigoSP)
@@ -22,13 +26,16 @@ class EditarServicioProv : AppCompatActivity() {
         val btnGuardar = findViewById<Button>(R.id.btnRegistrarSP)
         val btnRegresar = findViewById<Button>(R.id.btnRegresarSP)
 
-        // Rellenar campos si ya hay un servicio
+        // Mostrar datos existentes
         if (servicio != null) {
             etCodigo.setText(servicio.codigo)
             etCodigo.isEnabled = false
             etNombre.setText(servicio.nombre)
             etTipo.setText(servicio.tipo)
             etCosto.setText(servicio.costo.toString())
+        } else {
+            etCodigo.setText(db.generarCodigoServicio())
+            etCodigo.isEnabled = false
         }
 
         btnGuardar.setOnClickListener {
@@ -36,25 +43,44 @@ class EditarServicioProv : AppCompatActivity() {
             val tipo = etTipo.text.toString()
             val costo = etCosto.text.toString().toDoubleOrNull() ?: 0.0
 
+            if (nombre.isBlank() || tipo.isBlank()) {
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (servicio != null) {
-                val actualizado = db.actualizarServicio(
-                    servicio.id, nombre, tipo, costo
-                )
+                val actualizado = db.actualizarServicio(servicio.id, nombre, tipo, costo)
                 if (actualizado) {
+                    //Registrar modificación en la auditoría
+                    db.registrarAuditoria(
+                        usuario = usuarioActual,
+                        rol = rolUsuario,
+                        accion = "Modificación",
+                        entidad = "Servicio",
+                        detalle = "Servicio actualizado: ${servicio.codigo} - $nombre"
+                    )
+
                     Toast.makeText(this, "Servicio actualizado correctamente", Toast.LENGTH_SHORT).show()
-                    val i = Intent(this, ListaProveedores::class.java)
-                    startActivity(i)
+                    startActivity(Intent(this, ListaProveedores::class.java))
                     finish()
                 } else {
                     Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                // Si no hay servicio, se registra uno nuevo
-                val nuevo = db.registrarServicio(proveedorId, etCodigo.text.toString(), nombre, tipo, costo)
-                if (nuevo) {
+                val codigo = etCodigo.text.toString()
+                val registrado = db.registrarServicio(proveedorId, codigo, nombre, tipo, costo)
+                if (registrado) {
+                    //Registrar creación en la auditoría
+                    db.registrarAuditoria(
+                        usuario = usuarioActual,
+                        rol = rolUsuario,
+                        accion = "Registro",
+                        entidad = "Servicio",
+                        detalle = "Servicio registrado: $codigo - $nombre"
+                    )
+
                     Toast.makeText(this, "Servicio registrado correctamente", Toast.LENGTH_SHORT).show()
-                    val i = Intent(this, ListaProveedores::class.java)
-                    startActivity(i)
+                    startActivity(Intent(this, ListaProveedores::class.java))
                     finish()
                 } else {
                     Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show()
@@ -62,6 +88,8 @@ class EditarServicioProv : AppCompatActivity() {
             }
         }
 
-        btnRegresar.setOnClickListener { finish() }
+        btnRegresar.setOnClickListener {
+            finish()
+        }
     }
 }

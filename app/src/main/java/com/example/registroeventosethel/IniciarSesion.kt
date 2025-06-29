@@ -64,8 +64,18 @@ class IniciarSesion : AppCompatActivity() {
                 Toast.makeText(this, "Solo colaboradores", Toast.LENGTH_SHORT).show()
                 return
             }
+            val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+            prefs.edit()
+                .putString("usuario", usuario.NombreUsuario)
+                .putString("rol", "Colaborador")
+                .apply()
+
             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, PantallaPrincipal::class.java))
+            val intent = Intent(this, PantallaPrincipal::class.java)
+            intent.putExtra("usuario", usuario.NombreUsuario)
+            intent.putExtra("rol", "Colaborador")
+            startActivity(intent)
+
         } else {
             Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show()
         }

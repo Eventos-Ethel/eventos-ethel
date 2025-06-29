@@ -68,6 +68,16 @@ class RegistrarUsuario : AppCompatActivity() {
 
         val usuario = Usuario(nombreCompleto, nombreUsuario, contraseña)
         if (dbHelper.registrarUsuario(usuario)) {
+
+            // Registrar en auditoría
+            dbHelper.registrarAuditoria(
+                usuario = "admin",  // Puedes cambiar esto por la sesión activa
+                rol = "Administrador",
+                accion = "Registro",
+                entidad = "Usuario",
+                detalle = "Se registró al usuario: $nombreUsuario"
+            )
+
             Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
         } else {

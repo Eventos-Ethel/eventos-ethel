@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class EditarEvento : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +59,15 @@ class EditarEvento : AppCompatActivity() {
             )
 
             if (actualizado) {
+                // Auditoría
+                db.registrarAuditoria(
+                    usuario = "admin",  // Reemplaza esto por el nombre de usuario real si manejas sesión
+                    rol = "Administrador",
+                    accion = "Modificar",
+                    entidad = "Evento",
+                    detalle = "Se modificó el evento ID ${evento.id} (${evento.nombreCliente})"
+                )
+
                 Toast.makeText(this, "Evento actualizado", Toast.LENGTH_SHORT).show()
                 finish()
             } else {
@@ -69,5 +75,4 @@ class EditarEvento : AppCompatActivity() {
             }
         }
     }
-
 }

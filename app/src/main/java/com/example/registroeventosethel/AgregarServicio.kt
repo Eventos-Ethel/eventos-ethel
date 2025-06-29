@@ -18,6 +18,10 @@ class AgregarServicio : AppCompatActivity() {
 
         val proveedorId = intent.getLongExtra("proveedorId", -1)
 
+        // Recibir usuario y rol por intent (debes pasarlos desde la actividad anterior)
+        val usuarioActual = intent.getStringExtra("usuario") ?: "desconocido"
+        val rolUsuario = intent.getStringExtra("rol") ?: "desconocido"
+
         val etCodigo = findViewById<EditText>(R.id.txnCodigoSP)
         val etNombre = findViewById<EditText>(R.id.txtNombreSP)
         val etTipo = findViewById<EditText>(R.id.txtTipoSP)
@@ -26,7 +30,7 @@ class AgregarServicio : AppCompatActivity() {
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrarSP)
         val btnRegresar = findViewById<Button>(R.id.btnRegresarSP)
 
-        // Generar código automáticamente y bloquear edición
+        // Generar código automáticamente
         etCodigo.setText(dbHelper.generarCodigoServicio())
         etCodigo.isEnabled = false
 
@@ -46,8 +50,17 @@ class AgregarServicio : AppCompatActivity() {
                 )
 
                 if (exito) {
+                    // Registrar en tabla auditoría
+                    dbHelper.registrarAuditoria(
+                        usuario = usuarioActual,
+                        rol = rolUsuario,
+                        accion = "Registro",
+                        entidad = "Servicio",
+                        detalle = "Servicio registrado: $nombre ($codigo)"
+                    )
+
                     Toast.makeText(this, "Servicio registrado correctamente", Toast.LENGTH_SHORT).show()
-                    finish() // o volver a ListaProveedores si deseas
+                    finish()
                 } else {
                     Toast.makeText(this, "Error al registrar servicio", Toast.LENGTH_SHORT).show()
                 }

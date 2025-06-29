@@ -14,8 +14,11 @@ class EditarProveedores : AppCompatActivity() {
         setContentView(R.layout.activity_editar_proveedores)
 
         val db = SqliteHelper(this)
-
         val proveedor = intent.getSerializableExtra("proveedor") as Proveedor
+
+        // Usuario y rol actual desde el intent
+        val usuarioActual = intent.getStringExtra("usuario") ?: "desconocido"
+        val rolUsuario = intent.getStringExtra("rol") ?: "desconocido"
 
         val etCodigo = findViewById<EditText>(R.id.txnCodigoEP)
         val etNombre = findViewById<EditText>(R.id.txtNombreEP)
@@ -28,14 +31,13 @@ class EditarProveedores : AppCompatActivity() {
         val btnGuardar = findViewById<Button>(R.id.btnSiguienteEP)
         val btnRegresarEP = findViewById<Button>(R.id.btnRegresoPP)
 
-        // Cargar datos en los campos
+        // Cargar datos del proveedor actual
         etCodigo.setText(proveedor.codigo)
         etNombre.setText(proveedor.nombre)
         etDireccion.setText(proveedor.direccion)
         etCorreo.setText(proveedor.correo)
         etTelefono.setText(proveedor.telefono)
 
-        // Provincias y distritos (puedes adaptar según tu lógica real)
         val provincias = listOf("Cañete", "Lima", "Ica")
         val distritos = listOf("San Vicente", "Imperial", "Nuevo Imperial")
 
@@ -45,17 +47,15 @@ class EditarProveedores : AppCompatActivity() {
         spinnerProvincia.setSelection(provincias.indexOf(proveedor.provincia))
         spinnerDistrito.setSelection(distritos.indexOf(proveedor.distrito))
 
-        // Tipo de proveedor
         val tipos = listOf("Persona", "Empresa")
         val tipoAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tipos)
         spinnerTipo.adapter = tipoAdapter
-        val tipoSeleccionado = tipos.indexOf(proveedor.tipo)
-        if (tipoSeleccionado >= 0) spinnerTipo.setSelection(tipoSeleccionado)
+        spinnerTipo.setSelection(tipos.indexOf(proveedor.tipo))
 
-        btnRegresarEP.setOnClickListener{
+        btnRegresarEP.setOnClickListener {
             startActivity(Intent(this, ListaProveedores::class.java))
         }
-        // Guardar cambios
+
         btnGuardar.setOnClickListener {
             val proveedorActualizado = Proveedor(
                 id = proveedor.id,
@@ -72,14 +72,24 @@ class EditarProveedores : AppCompatActivity() {
 
             val actualizado = db.actualizarProveedor(proveedorActualizado)
             if (actualizado) {
+                // Auditoría
+                db.registrarAuditoria(
+                    usuario = usuarioActual,
+                    rol = rolUsuario,
+                    accion = "Modificación",
+                    entidad = "Proveedor",
+                    detalle = "Proveedor actualizado: ${proveedorActualizado.nombre} (${proveedorActualizado.codigo})"
+                )
+
                 Toast.makeText(this, "Proveedor actualizado correctamente", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, EditarServicioProv::class.java)
                 intent.putExtra("proveedorId", proveedor.id)
+                intent.putExtra("usuario", usuarioActual)
+                intent.putExtra("rol", rolUsuario)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Error al actualizar proveedor", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 }

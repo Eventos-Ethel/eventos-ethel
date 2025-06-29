@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/gradient_background"
+    tools:context=".ListaAuditoria">
+
+    <TextView
+        android:id="@+id/tvTituloAuditoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registros de Auditoría"
+        android:textSize="22sp"
+        android:textColor="@color/peruvian_wine"
+        android:gravity="center"
+        android:fontFamily="@font/playfair_display_bold"
+        android:layout_marginBottom="16dp" />
+
+    <ListView
+        android:id="@+id/listViewAuditoria"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="10dp" />
+
+    <Button
+        android:id="@+id/btnRegresarAuditoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regresar"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/peruvian_wine"
+        android:fontFamily="@font/poppins_medium" />
+</LinearLayout>

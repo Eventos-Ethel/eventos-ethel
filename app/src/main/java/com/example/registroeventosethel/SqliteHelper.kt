@@ -8,7 +8,7 @@ import android.util.Log
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuario.db", null, 7) { // Cambiado a versión 4
+class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuario.db", null, 8) { // Cambiado a versión 4
 
     companion object {
         private const val DATE_FORMAT = "dd/MM/yyyy"
@@ -94,16 +94,17 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
 )""")
 
         db.execSQL("""
-    CREATE TABLE auditoria (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        usuario TEXT,
-        rol TEXT,
-        accion TEXT,
-        entidad TEXT,
-        detalle TEXT,
-        fechaHora TEXT
-                            )
-                """)
+        CREATE TABLE IF NOT EXISTS auditoria (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario TEXT,
+            rol TEXT,
+            accion TEXT,
+            entidad TEXT,
+            detalle TEXT,
+            fechaHora TEXT
+        )
+    """)
+
 
 
     }
@@ -686,7 +687,8 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         }
     }
 
-    fun registrarAuditoria(usuario: String, rol: String, accion: String, entidad: String, detalle: String) {
+
+    fun registrarAuditoria(usuario: String, rol: String, accion: String, entidad: String, detalle: String): Boolean {
         val db = writableDatabase
         val values = ContentValues().apply {
             put("usuario", usuario)
@@ -694,14 +696,39 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
             put("accion", accion)
             put("entidad", entidad)
             put("detalle", detalle)
-            put("fechaHora", java.time.LocalDateTime.now().toString())
+
+            val formato = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss", java.util.Locale.getDefault())
+            val fechaHoraActual = formato.format(java.util.Date())
+            put("fechaHora", fechaHoraActual)
         }
-        db.insert("auditoria", null, values)
-        db.close()
+        return db.insert("auditoria", null, values) != -1L
     }
 
 
 
+    fun obtenerAuditoria(): List<Auditoria> {
+        val auditorias = mutableListOf<Auditoria>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM auditoria ORDER BY fechaHora DESC", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val usuario = cursor.getString(cursor.getColumnIndexOrThrow("usuario")) ?: "N/A"
+                val rol = cursor.getString(cursor.getColumnIndexOrThrow("rol")) ?: "N/A"
+                val accion = cursor.getString(cursor.getColumnIndexOrThrow("accion")) ?: "N/A"
+                val entidad = cursor.getString(cursor.getColumnIndexOrThrow("entidad")) ?: "N/A"
+                val detalle = cursor.getString(cursor.getColumnIndexOrThrow("detalle")) ?: "N/A"
+                val fechaHora = cursor.getString(cursor.getColumnIndexOrThrow("fechaHora")) ?: "N/A"
+
+                auditorias.add(
+                    Auditoria(usuario, rol, accion, entidad, detalle, fechaHora)
+                )
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        return auditorias
+    }
 
 
 }

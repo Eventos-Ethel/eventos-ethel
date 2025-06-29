@@ -18,6 +18,10 @@ class ListaProveedores : AppCompatActivity() {
         val btnRegresarLP = findViewById<Button>(R.id.btnRegresarLP)
         val gridView = findViewById<GridView>(R.id.gridViewProveedores)
 
+        //Recuperar usuario actual
+        val usuario = intent.getStringExtra("usuario") ?: "desconocido"
+        val rol = intent.getStringExtra("rol") ?: "desconocido"
+
         val adapter = object : BaseAdapter() {
             override fun getCount() = proveedores.size
             override fun getItem(position: Int) = proveedores[position]
@@ -38,6 +42,8 @@ class ListaProveedores : AppCompatActivity() {
                 view.findViewById<Button>(R.id.btnEditar).setOnClickListener {
                     val intent = Intent(this@ListaProveedores, EditarProveedores::class.java)
                     intent.putExtra("proveedor", p)
+                    intent.putExtra("usuario", usuario)
+                    intent.putExtra("rol", rol)
                     startActivity(intent)
                 }
 
@@ -48,6 +54,14 @@ class ListaProveedores : AppCompatActivity() {
                         .setPositiveButton("Sí") { _, _ ->
                             val eliminado = db.eliminarProveedor(p.id)
                             if (eliminado) {
+                                db.registrarAuditoria(
+                                    usuario = usuario,
+                                    rol = rol,
+                                    accion = "Eliminación",
+                                    entidad = "Proveedor",
+                                    detalle = "Proveedor eliminado: ${p.nombre} (${p.codigo})"
+                                )
+
                                 proveedores.removeAt(position)
                                 notifyDataSetChanged()
                                 Toast.makeText(this@ListaProveedores, "Proveedor eliminado", Toast.LENGTH_SHORT).show()
@@ -66,7 +80,10 @@ class ListaProveedores : AppCompatActivity() {
         gridView.adapter = adapter
 
         btnRegresarLP.setOnClickListener {
-            startActivity(Intent(this, PantallaPrincipal::class.java))
+            val intent = Intent(this, PantallaPrincipal::class.java)
+            intent.putExtra("usuario", usuario)
+            intent.putExtra("rol", rol)
+            startActivity(intent)
         }
     }
 }
