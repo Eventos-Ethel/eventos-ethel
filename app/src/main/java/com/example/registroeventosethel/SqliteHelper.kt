@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.security.MessageDigest
 
 class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuario.db", null, 8) { // Cambiado a versión 4
 
@@ -729,6 +730,4 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         cursor.close()
         return auditorias
     }
-
-
 }

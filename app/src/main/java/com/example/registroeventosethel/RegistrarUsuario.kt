@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.registroeventosethel.hashContraseña
 
 class RegistrarUsuario : AppCompatActivity() {
 
@@ -66,7 +67,9 @@ class RegistrarUsuario : AppCompatActivity() {
             return
         }
 
-        val usuario = Usuario(nombreCompleto, nombreUsuario, contraseña)
+        val contraseñaHasheada = hashContraseña(contraseña)
+        val usuario = Usuario(nombreCompleto, nombreUsuario, contraseñaHasheada)
+
         if (dbHelper.registrarUsuario(usuario)) {
 
             // Registrar en auditoría

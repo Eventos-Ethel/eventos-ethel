@@ -9,8 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.registroeventosethel.hashContraseña
 
 class IniciarSesion : AppCompatActivity() {
 
@@ -18,6 +17,9 @@ class IniciarSesion : AppCompatActivity() {
     private var editTextContraseña: EditText? = null
     private var btnAceptarIS: Button? = null
     private var btnRegresarIS: Button? = null
+    private val MAX_INTENTOS = 5
+    private val TIEMPO_BLOQUEO_MS = 30_000L // 30 segundos
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +32,10 @@ class IniciarSesion : AppCompatActivity() {
         btnAceptarIS = findViewById(R.id.btnAceptarIS)
         btnRegresarIS = findViewById(R.id.btnRegresarIS)
 
-        btnAceptarIS?.setOnClickListener{
+        btnAceptarIS?.setOnClickListener {
             iniciarSesion()
         }
-        btnRegresarIS?.setOnClickListener{
+        btnRegresarIS?.setOnClickListener {
             val siguiente = Intent(this, MainActivity::class.java)
             startActivity(siguiente)
         }
@@ -56,15 +58,34 @@ class IniciarSesion : AppCompatActivity() {
             return
         }
 
+        val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+        val intentosFallidos = prefs.getInt("intentos_fallidos", 0)
+        val tiempoBloqueo = prefs.getLong("bloqueo_hasta", 0L)
+        val ahora = System.currentTimeMillis()
+
+        if (ahora < tiempoBloqueo) {
+            Toast.makeText(this, "Acceso bloqueado. Intenta más tarde.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val dbHelper = SqliteHelper(this)
         val usuario = dbHelper.obtenerUsuario(nombreUsuario)
 
-        if (usuario != null && usuario.Contraseña == contraseña) {
+        val contraseñaEncriptada = hashContraseña(contraseña)
+
+        if (usuario != null && usuario.Contraseña == contraseñaEncriptada) {
             if (usuario.esAdmin != esAdminEsperado) {
                 Toast.makeText(this, "Solo colaboradores", Toast.LENGTH_SHORT).show()
                 return
             }
-            val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+
+            // Éxito: limpiar intentos
+            prefs.edit()
+                .putInt("intentos_fallidos", 0)
+                .remove("bloqueo_hasta")
+                .apply()
+
+            // Guardar datos de sesión
             prefs.edit()
                 .putString("usuario", usuario.NombreUsuario)
                 .putString("rol", "Colaborador")
@@ -75,9 +96,20 @@ class IniciarSesion : AppCompatActivity() {
             intent.putExtra("usuario", usuario.NombreUsuario)
             intent.putExtra("rol", "Colaborador")
             startActivity(intent)
-
         } else {
-            Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show()
+            val nuevosIntentos = intentosFallidos + 1
+            val editor = prefs.edit()
+            editor.putInt("intentos_fallidos", nuevosIntentos)
+
+            if (nuevosIntentos >= MAX_INTENTOS) {
+                editor.putLong("bloqueo_hasta", ahora + TIEMPO_BLOQUEO_MS)
+                Toast.makeText(this, "Demasiados intentos. Acceso bloqueado 30 segundos.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Usuario o contraseña incorrecta ($nuevosIntentos/$MAX_INTENTOS)", Toast.LENGTH_SHORT).show()
+            }
+            editor.apply()
         }
     }
+
+
 }
