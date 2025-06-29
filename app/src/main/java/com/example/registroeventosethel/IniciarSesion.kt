@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -26,6 +27,19 @@ class IniciarSesion : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_iniciar_sesion)
 
+        val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+        val usuarioGuardado = prefs.getString("usuario", null)
+        val rolGuardado = prefs.getString("rol", null)
+
+        if (usuarioGuardado != null && rolGuardado != null) {
+            Toast.makeText(this, "Sesión restaurada automáticamente", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PantallaPrincipal::class.java)
+            intent.putExtra("usuario", usuarioGuardado)
+            intent.putExtra("rol", rolGuardado)
+            startActivity(intent)
+            finish()
+            return
+        }
 
         editTextNombreUsuario = findViewById(R.id.txtUserNameIS)
         editTextContraseña = findViewById(R.id.txtContraseñaIS)
@@ -40,6 +54,8 @@ class IniciarSesion : AppCompatActivity() {
             startActivity(siguiente)
         }
 
+
+
         val tvOlvidasteContrasena = findViewById<TextView>(R.id.tvOlvidasteContrasena)
         tvOlvidasteContrasena.setOnClickListener {
             val intent = Intent(this, RecuperarContrasena::class.java)
@@ -52,6 +68,7 @@ class IniciarSesion : AppCompatActivity() {
         val nombreUsuario = editTextNombreUsuario?.text?.toString()
         val contraseña = editTextContraseña?.text?.toString()
         val esAdminEsperado = intent.getBooleanExtra("esAdmin", false)
+        val chkMantenerSesion = findViewById<CheckBox>(R.id.chkMantenerSesion)
 
         if (nombreUsuario.isNullOrBlank() || contraseña.isNullOrBlank()) {
             Toast.makeText(this, "Por favor completar todos los datos", Toast.LENGTH_SHORT).show()
@@ -79,24 +96,28 @@ class IniciarSesion : AppCompatActivity() {
                 return
             }
 
-            // Éxito: limpiar intentos
+            // Éxito: limpiar intentos fallidos
             prefs.edit()
                 .putInt("intentos_fallidos", 0)
                 .remove("bloqueo_hasta")
                 .apply()
 
-            // Guardar datos de sesión
-            prefs.edit()
-                .putString("usuario", usuario.NombreUsuario)
-                .putString("rol", "Colaborador")
-                .apply()
+            // Guardar sesión solo si marcó el CheckBox
+            val chkMantenerSesion = findViewById<CheckBox>(R.id.chkMantenerSesion)
+            if (chkMantenerSesion.isChecked) {
+                prefs.edit()
+                    .putString("usuario", usuario.NombreUsuario)
+                    .putString("rol", if (usuario.esAdmin) "Administrador" else "Colaborador")
+                    .apply()
+            }
 
             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, PantallaPrincipal::class.java)
             intent.putExtra("usuario", usuario.NombreUsuario)
             intent.putExtra("rol", "Colaborador")
             startActivity(intent)
-        } else {
+        }
+        else {
             val nuevosIntentos = intentosFallidos + 1
             val editor = prefs.edit()
             editor.putInt("intentos_fallidos", nuevosIntentos)
@@ -109,6 +130,8 @@ class IniciarSesion : AppCompatActivity() {
             }
             editor.apply()
         }
+
+
     }
 
 

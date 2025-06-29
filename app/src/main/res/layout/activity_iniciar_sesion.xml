@@ -106,6 +106,12 @@
                     android:textColor="@color/dark_gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <CheckBox
+                android:id="@+id/chkMantenerSesion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mantener la sesión iniciada" />
+
             <!-- Contenedor de botones -->
             <LinearLayout
                 android:layout_width="match_parent"

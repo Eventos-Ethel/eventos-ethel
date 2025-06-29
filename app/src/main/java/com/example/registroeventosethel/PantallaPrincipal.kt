@@ -58,9 +58,28 @@ class PantallaPrincipal : AppCompatActivity() {
 
         val btnCerrarSesion = findViewById<Button>(R.id.btnCerrarSesion)
         btnCerrarSesion.setOnClickListener {
-            val i = Intent(this, TipoUsuario::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(i)
+            val builder = android.app.AlertDialog.Builder(this)
+            builder.setTitle("Cerrar sesión")
+            builder.setMessage("¿Estás seguro de que deseas cerrar sesión?")
+
+            builder.setPositiveButton("Sí") { dialog, _ ->
+                // Borrar la sesión guardada
+                val prefs = getSharedPreferences("sesion", MODE_PRIVATE)
+                prefs.edit().clear().apply()
+
+                // Redirigir al selector de tipo de usuario
+                val i = Intent(this, TipoUsuario::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(i)
+                finish()
+            }
+
+            builder.setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
         }
 
         // Crear canal de notificación
