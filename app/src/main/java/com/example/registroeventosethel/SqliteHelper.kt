@@ -9,7 +9,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.security.MessageDigest
 
-class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuario.db", null, 8) { // Cambiado a versión 4
+class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuario.db", null, 8) { // Cambiado a versión 8
 
     companion object {
         private const val DATE_FORMAT = "dd/MM/yyyy"
@@ -105,8 +105,6 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
             fechaHora TEXT
         )
     """)
-
-
 
     }
 
@@ -730,4 +728,16 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, "registroUsuari
         cursor.close()
         return auditorias
     }
+
+    fun actualizarContraseña(nombreUsuario: String, nuevaContraseñaHash: String): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("contraseña", nuevaContraseñaHash)
+        }
+        val result = db.update("usuario", values, "nombreUsuario = ?", arrayOf(nombreUsuario))
+        db.close()
+        return result > 0
+    }
+
+
 }

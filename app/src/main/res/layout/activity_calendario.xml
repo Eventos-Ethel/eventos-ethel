@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutCalendario"
@@ -19,89 +18,28 @@
         android:background="@drawable/rounded_card"
         android:elevation="4dp" />
 
-    <!-- Filtros -->
-    <EditText
-        android:id="@+id/editTextLugar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_edittext"
-        android:fontFamily="@font/playfair_display_regular"
-        android:hint="Filtrar por Lugar"
-        android:inputType="text"
-        android:padding="12dp"
-        android:textColor="@color/dark_gray"
-        android:textSize="14sp" />
-
-    <EditText
-        android:id="@+id/editTextCliente"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Filtrar por Cliente"
-        android:inputType="text"
-        android:background="@drawable/rounded_edittext"
-        android:padding="12dp"
-        android:textColor="@color/dark_gray"
-        android:textSize="14sp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/playfair_display_regular" />
-
-    <Spinner
-        android:id="@+id/spinnerUbicacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_spinner"
-        android:padding="12dp"
-        android:layout_marginBottom="8dp" />
-
-    <EditText
-        android:id="@+id/editTextFechaInicio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha Inicio"
-        android:focusable="false"
-        android:clickable="true"
-        android:background="@drawable/rounded_edittext"
-        android:padding="12dp"
-        android:textColor="@color/dark_gray"
-        android:textSize="14sp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/playfair_display_regular" />
-
-    <EditText
-        android:id="@+id/editTextFechaFin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha Fin"
-        android:focusable="false"
-        android:clickable="true"
-        android:background="@drawable/rounded_edittext"
-        android:padding="12dp"
-        android:textColor="@color/dark_gray"
-        android:textSize="14sp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/playfair_display_regular" />
-
-    <!-- Botón Filtrar -->
+    <!-- Botones de Filtro -->
     <Button
-        android:id="@+id/btnFiltrar"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnIrAFiltradoCliente"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Filtrar"
+        android:text="Filtrar por Cliente"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:fontFamily="@font/playfair_display_bold"
         android:backgroundTint="@color/btnRegistrarRP2"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="12dp" />
 
-    <!-- Lista de eventos filtrados -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewEventos"
+    <Button
+        android:id="@+id/btnIrAFiltradoFecha"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="8dp" />
+        android:layout_height="wrap_content"
+        android:text="Filtrar por Fechas"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/playfair_display_bold"
+        android:backgroundTint="@color/btnRegistrarRP2"
+        android:layout_marginBottom="24dp" />
 
     <!-- Botón Regresar -->
     <Button
@@ -116,5 +54,4 @@
         android:backgroundTint="@color/peruvian_wine"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
-
 </LinearLayout>

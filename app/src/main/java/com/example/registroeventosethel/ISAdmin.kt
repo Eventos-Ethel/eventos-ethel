@@ -41,9 +41,9 @@ class ISAdmin : AppCompatActivity() {
 
             val db = SqliteHelper(this)
             val usuario = db.obtenerUsuario(usuarioTexto)
-            val contraseñaEncriptada = hashContraseña(contraseñaTexto)
 
-            if (usuario != null && usuario.Contraseña == contraseñaEncriptada) {
+            // Comparación directa sin hash
+            if (usuario != null && usuario.Contraseña == contraseñaTexto) {
                 if (!usuario.esAdmin) {
                     Toast.makeText(this, "Este usuario no es administrador", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
