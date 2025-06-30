@@ -43,6 +43,7 @@
                 <receiver android:name=".RevisorEventosReceiver" android:exported="false"/>
                 <activity android:name=".VerificarCodigo" />
                 <activity android:name=".NuevaContrasena" />
+                <activity android:name=".BienvenidaActivity" />
 
                 <activity android:name=".MainActivity" />
                 <activity

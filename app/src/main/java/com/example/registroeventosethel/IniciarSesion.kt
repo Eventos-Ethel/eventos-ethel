@@ -33,13 +33,14 @@ class IniciarSesion : AppCompatActivity() {
 
         if (usuarioGuardado != null && rolGuardado != null) {
             Toast.makeText(this, "Sesión restaurada automáticamente", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, PantallaPrincipal::class.java)
+            val intent = Intent(this, BienvenidaActivity::class.java)
             intent.putExtra("usuario", usuarioGuardado)
             intent.putExtra("rol", rolGuardado)
             startActivity(intent)
             finish()
             return
         }
+
 
         editTextNombreUsuario = findViewById(R.id.txtUserNameIS)
         editTextContraseña = findViewById(R.id.txtContraseñaIS)
@@ -112,10 +113,11 @@ class IniciarSesion : AppCompatActivity() {
             }
 
             Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, PantallaPrincipal::class.java)
+            val intent = Intent(this, BienvenidaActivity::class.java)
             intent.putExtra("usuario", usuario.NombreUsuario)
             intent.putExtra("rol", "Colaborador")
             startActivity(intent)
+
         }
         else {
             val nuevosIntentos = intentosFallidos + 1
