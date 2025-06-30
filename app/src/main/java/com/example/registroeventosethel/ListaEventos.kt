@@ -34,12 +34,18 @@ class ListaEventos : AppCompatActivity() {
                 view.findViewById<TextView>(android.R.id.text1).text = "${e.nombreCliente} - ${e.fecha} ${e.hora}"
                 view.findViewById<TextView>(android.R.id.text2).text = "S/ ${e.precio} | ${e.celular} | ${e.invitados} invitados"
 
-                // Clic simple para editar
+                // Clic simple para editar (recarga el evento actualizado desde la BD)
                 view.setOnClickListener {
-                    val intent = Intent(this@ListaEventos, EditarEvento::class.java)
-                    intent.putExtra("evento", e)
-                    startActivity(intent)
+                    val eventoActualizado = db.obtenerEventos().find { it.id == e.id }
+                    if (eventoActualizado != null) {
+                        val intent = Intent(this@ListaEventos, EditarEvento::class.java)
+                        intent.putExtra("evento", eventoActualizado)
+                        startActivity(intent)
+                    } else {
+                        android.widget.Toast.makeText(this@ListaEventos, "No se encontró el evento actualizado", android.widget.Toast.LENGTH_SHORT).show()
+                    }
                 }
+
 
 // Pulsación larga para borrar
                 view.setOnLongClickListener {

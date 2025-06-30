@@ -3,6 +3,7 @@ package com.example.registroeventosethel
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
@@ -38,14 +39,56 @@ class EditarProveedores : AppCompatActivity() {
         etCorreo.setText(proveedor.correo)
         etTelefono.setText(proveedor.telefono)
 
-        val provincias = listOf("Cañete", "Lima", "Ica")
-        val distritos = listOf("San Vicente", "Imperial", "Nuevo Imperial")
+        val adapterProvincias = ArrayAdapter.createFromResource(
+            this,
+            R.array.provincia_opc,
+            android.R.layout.simple_spinner_item
+        ).apply { setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
+        spinnerProvincia.adapter = adapterProvincias
 
-        spinnerProvincia.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, provincias)
-        spinnerDistrito.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, distritos)
+        val adapterDistritos = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
+        adapterDistritos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerDistrito.adapter = adapterDistritos
 
-        spinnerProvincia.setSelection(provincias.indexOf(proveedor.provincia))
-        spinnerDistrito.setSelection(distritos.indexOf(proveedor.distrito))
+// Lógica para actualizar distritos según la provincia seleccionada
+        spinnerProvincia.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                val provincia = parent?.getItemAtPosition(pos).toString()
+                val idArrayDistritos = when (provincia) {
+                    "Barranca" -> R.array.dist_barranca_opc
+                    "Cajatambo" -> R.array.dist_cajatambo_opc
+                    "Canta" -> R.array.dist_canta_opc
+                    "Cañete" -> R.array.dist_cañete_opc
+                    "Huaral" -> R.array.dist_huaral_opc
+                    "Huarochirí" -> R.array.dist_huarochiri_opc
+                    "Huaura" -> R.array.dist_huaura_opc
+                    "Lima provincia" -> R.array.dist_lima_opc
+                    "Oyón" -> R.array.dist_oyon_opc
+                    "Yauyos" -> R.array.dist_yauyos_opc
+                    else -> 0
+                }
+
+                adapterDistritos.clear()
+                if (idArrayDistritos != 0) {
+                    val distritos = resources.getStringArray(idArrayDistritos)
+                    adapterDistritos.addAll(*distritos)
+                }
+                // Seleccionar el distrito original si coincide
+                val index = adapterDistritos.getPosition(proveedor.distrito)
+                if (index >= 0) {
+                    spinnerDistrito.setSelection(index)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+// Preseleccionar provincia
+        val indexProvincia = adapterProvincias.getPosition(proveedor.provincia)
+        if (indexProvincia >= 0) {
+            spinnerProvincia.setSelection(indexProvincia)
+        }
+
 
         val tipos = listOf("Persona", "Empresa")
         val tipoAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tipos)

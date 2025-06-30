@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_eventos"
+        android:icon="@drawable/lista_eventos"
+        android:title="Eventos" />
+    <item
+        android:id="@+id/nav_proveedores"
+        android:icon="@drawable/lista_proveedores"
+        android:title="Proveedores" />
+    <item
+        android:id="@+id/nav_calendario"
+        android:icon="@drawable/calendario"
+        android:title="Calendario" />
+</menu>
