@@ -30,7 +30,7 @@
             android:id="@+id/btnRecuperar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mostrar contraseña"
+            android:text="Enviar Código de Verificación"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/peruvian_wine"
             android:textColor="@color/white" />
