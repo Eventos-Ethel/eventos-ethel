@@ -25,23 +25,23 @@ class PPAdmin : AppCompatActivity() {
         val imbReportesAdmin = findViewById<ImageButton>(R.id.imbReportesAdm)
 
         imbRegProvPP.setOnClickListener{
-            val siguiente = Intent(this, RegistroProveedor2::class.java)
+            val siguiente = Intent(this, RegistroProveedorAdmin::class.java)
             startActivity(siguiente)
         }
         imbRegEventPP.setOnClickListener{
-            val siguiente = Intent(this, RegistroEvento::class.java)
+            val siguiente = Intent(this, RegistroEventoAdmin::class.java)
             startActivity(siguiente)
         }
         imbListProvPP.setOnClickListener{
-            val siguiente = Intent(this, ListaProveedores::class.java)
+            val siguiente = Intent(this, ListaProveedoresAdmin::class.java)
             startActivity(siguiente)
         }
         imbListEventPP.setOnClickListener{
-            val siguiente = Intent(this, ListaEventos::class.java)
+            val siguiente = Intent(this, ListaEventosAdmin::class.java)
             startActivity(siguiente)
         }
         imbCalendarioPP.setOnClickListener{
-            val siguiente = Intent(this, Calendario::class.java)
+            val siguiente = Intent(this, CalendarioAdmin::class.java)
             startActivity(siguiente)
         }
 

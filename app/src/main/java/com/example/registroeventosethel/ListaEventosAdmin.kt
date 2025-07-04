@@ -1,0 +1,89 @@
+package com.example.registroeventosethel
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.Button
+import android.widget.GridView
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class ListaEventosAdmin : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_lista_eventos)
+
+        val db = SqliteHelper(this)
+        val eventos = db.obtenerEventos().toMutableList()
+        val btnRegresarLE = findViewById<Button>(R.id.btnRegresarLE)
+
+
+        val gridView = findViewById<GridView>(R.id.gridViewEventos)
+        val adapter = object : BaseAdapter() {
+            override fun getCount() = eventos.size
+            override fun getItem(position: Int) = eventos[position]
+            override fun getItemId(position: Int) = eventos[position].id
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+                val view = convertView ?: layoutInflater.inflate(android.R.layout.simple_list_item_2, parent, false)
+                val e = eventos[position]
+                view.findViewById<TextView>(android.R.id.text1).text = "${e.nombreCliente} - ${e.fecha} ${e.hora}"
+                view.findViewById<TextView>(android.R.id.text2).text = "S/ ${e.precio} | ${e.celular} | ${e.invitados} invitados"
+
+                // Clic simple para editar (recarga el evento actualizado desde la BD)
+                view.setOnClickListener {
+                    val eventoActualizado = db.obtenerEventos().find { it.id == e.id }
+                    if (eventoActualizado != null) {
+                        val intent = Intent(this@ListaEventosAdmin, EditarEventoAdmin::class.java)
+                        intent.putExtra("evento", eventoActualizado)
+                        startActivity(intent)
+                    } else {
+                        android.widget.Toast.makeText(this@ListaEventosAdmin, "No se encontró el evento actualizado", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+
+// Pulsación larga para borrar
+                view.setOnLongClickListener {
+                    android.app.AlertDialog.Builder(this@ListaEventosAdmin)
+                        .setTitle("Eliminar Evento")
+                        .setMessage("¿Estás seguro de que quieres eliminar este evento?")
+                        .setPositiveButton("Sí") { _, _ ->
+                            val eventoEliminado = db.eliminarEvento(e.id)
+                            if (eventoEliminado) {
+                                db.registrarAuditoria(
+                                    usuario = "admin", // Cambia esto por la variable de sesión si la tienes
+                                    rol = "Administrador",
+                                    accion = "Eliminar",
+                                    entidad = "Evento",
+                                    detalle = "Se eliminó el evento ID ${e.id} (${e.nombreCliente})"
+                                )
+
+                                eventos.removeAt(position)
+                                notifyDataSetChanged()
+                                android.widget.Toast.makeText(this@ListaEventosAdmin, "Evento eliminado", android.widget.Toast.LENGTH_SHORT).show()
+                            } else {
+                                android.widget.Toast.makeText(this@ListaEventosAdmin, "Error al eliminar evento", android.widget.Toast.LENGTH_SHORT).show()
+                            }
+
+                        }
+                        .setNegativeButton("Cancelar", null)
+                        .show()
+                    true
+                }
+
+                return view
+            }
+        }
+
+        btnRegresarLE.setOnClickListener{
+            val siguiente = Intent(this, PPAdmin::class.java)
+            startActivity(siguiente)
+        }
+        gridView.adapter = adapter
+    }
+}

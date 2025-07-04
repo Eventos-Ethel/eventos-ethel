@@ -16,19 +16,31 @@
                 <!-- Lista de actividades -->
                 <activity android:name=".EditarServicioEvento" android:exported="false" />
                 <activity android:name=".EditarServicioProv" android:exported="false" />
+                <activity android:name=".EditarServicioProvAdmin" android:exported="false" />
                 <activity android:name=".ListaServicioProv" android:exported="false" />
                 <activity android:name=".ServicioEvento" android:exported="false" />
+                <activity android:name=".ServicioEventoAdmin" android:exported="false" />
                 <activity android:name=".AgregarServicio" android:exported="false" />
+                <activity android:name=".AgregarServicioAdmin" android:exported="false" />
                 <activity android:name=".CalendarioFiltrado3" android:exported="false" />
                 <activity android:name=".CalendarioFiltradoFecha" android:exported="false" />
+                <activity android:name=".CalendarioFiltradoFechaAdmin" android:exported="false" />
                 <activity android:name=".EditarEvento" android:exported="false" />
+                <activity android:name=".EditarEventoAdmin" android:exported="false" />
                 <activity android:name=".ListaEventos" android:exported="false" />
+                <activity android:name=".ListaEventosAdmin" android:exported="false" />
                 <activity android:name=".RegistroEvento" android:exported="false" />
+                <activity android:name=".RegistroEventoAdmin" android:exported="false" />
                 <activity android:name=".RegistroProveedor2" android:exported="false" />
+                <activity android:name=".RegistroProveedorAdmin" android:exported="false" />
                 <activity android:name=".CalendarioFiltradoCliente" android:exported="false" />
+                <activity android:name=".CalendarioFiltradoClienteAdmin" android:exported="false" />
                 <activity android:name=".Calendario" android:exported="false" />
+                <activity android:name=".CalendarioAdmin" android:exported="false" />
                 <activity android:name=".EditarProveedores" android:exported="false" />
+                <activity android:name=".EditarProveedoresAdmin" android:exported="false" />
                 <activity android:name=".ListaProveedores" android:exported="false" />
+                <activity android:name=".ListaProveedoresAdmin" android:exported="false" />
                 <activity android:name=".Usuario" android:exported="false" />
                 <activity android:name=".SqliteHelper" android:exported="false" />
                 <activity android:name=".Proveedor" android:exported="false" />
